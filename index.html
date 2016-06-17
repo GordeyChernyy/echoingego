@@ -4,9 +4,39 @@
     <meta charset="UTF-8">
     <title>Echoing Ego</title>
     <link rel="stylesheet" href="css/style.css">
+    <script type="text/javascript" src="src/data.json"></script>
     <script type="text/javascript" src="javascript/paper-full.js"></script>
     <script src="javascript/osc-browser.min.js"></script>
     <script type="text/paperscript" src="src/main.js" canvas="myCanvas"></script>
+    <script src="http://127.0.0.1:8081/socket.io/socket.io.js"></script>
+    <script>
+ 	  socket = io.connect('http://127.0.0.1', { port: 8081, rememberTransport: true});
+   	  console.log('oi');
+   	  socket.on('connect', function() {
+        // sends to socket.io server the host/port of oscServer
+        // and oscClient
+	    socket.emit('config',
+	        {
+	            server: {
+	                port: 3333,
+	                host: '127.0.0.1'
+	            },
+	            client: {
+	                port: 3334,
+	                host: '127.0.0.1'
+	            }
+	        }
+	    );
+    });
+
+    socket.on('message', function(obj) {
+        // var status = document.getElementById("status");
+        // status.innerHTML = obj[0];
+        // var d = JSON.parse('['+obj[2][1]+','+obj[2][2]+']');
+        console.log(obj);
+        // window.data = d;
+    });
+</script>
 </head>
 <body>
     <canvas id="myCanvas" resize ></canvas>
