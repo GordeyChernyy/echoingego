@@ -6,9 +6,13 @@
     <link rel="stylesheet" href="css/style.css">
     <script type="text/javascript" src="javascript/paper-full.js"></script>
 
-    <!-- <script src="javascript/osc-browser.min.js"></script> -->
+    <script type="text/javascript" src="src/scenes/sceneManager.js"></script>
+    <script type="text/javascript" src="src/scenes/sceneBase.js"></script>
+    <script type="text/javascript" src="src/scenes/physicalBound.js"></script>
+
     <script type="text/paperscript" src="src/main.js" canvas="myCanvas"></script>
     <script src="http://127.0.0.1:8081/socket.io/socket.io.js"></script>
+    
     <script>
     window.echoingEgo = {};
 
@@ -40,14 +44,6 @@
 			window.echoingEgo.initializeOnFrame();	
 			isOnce = false;
     	}
-		// paper.view.onFrame = function(event) { 
-		// 	console.log(event);
-
-		// }
-
-
-        // window.skeletonPositionData = skeletonPositionData;
-     // console.log(obj);
     });
 
     var parseOSCObj = function(obj){
