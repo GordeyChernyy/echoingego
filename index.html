@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="css/style.css">
     <script type="text/javascript" src="src/data.json"></script>
     <script type="text/javascript" src="javascript/paper-full.js"></script>
-    <script src="javascript/osc-browser.min.js"></script>
+    <!-- <script src="javascript/osc-browser.min.js"></script> -->
     <script type="text/paperscript" src="src/main.js" canvas="myCanvas"></script>
     <script src="http://127.0.0.1:8081/socket.io/socket.io.js"></script>
     <script>
@@ -28,14 +28,31 @@
 	        }
 	    );
     });
-
+   	window.skeletonPositionData = {}; 
     socket.on('message', function(obj) {
-        // var status = document.getElementById("status");
-        // status.innerHTML = obj[0];
-        // var d = JSON.parse('['+obj[2][1]+','+obj[2][2]+']');
-        console.log(obj);
-        // window.data = d;
+
+    	parseOSCObj(obj)
+
+
+
+        // window.skeletonPositionData = skeletonPositionData;
+     // console.log(obj);
     });
+
+    var parseOSCObj = function(obj){
+    	var rootObj = obj[2]
+    	var righthand_pos;
+   		var lefthand_pos;
+   		updatePositions(rootObj);
+    }
+
+    var updatePositions = function (rootObj) {
+    	var name = rootObj[0]
+    	var x = rootObj[1];
+    	var y = rootObj[2];
+		window.skeletonPositionData[name] = {x: x, y: y};	
+    }
+
 </script>
 </head>
 <body>
