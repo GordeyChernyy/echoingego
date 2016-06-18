@@ -10,6 +10,8 @@
     <script type="text/paperscript" src="src/main.js" canvas="myCanvas"></script>
     <script src="http://127.0.0.1:8081/socket.io/socket.io.js"></script>
     <script>
+    window.echoingEgo = {};
+
  	  var socket = io.connect('http://127.0.0.1', { port: 8081, rememberTransport: true});
    	  console.log('oi');
    	  socket.on('connect', function() {
@@ -28,11 +30,20 @@
 	        }
 	    );
     });
-   	window.skeletonPositionData = {}; 
+
+   	window.echoingEgo.data = {}; 
+   	var isOnce = true;
     socket.on('message', function(obj) {
 
     	parseOSCObj(obj)
+    	if(isOnce){
+			window.echoingEgo.initializeOnFrame();	
+			isOnce = false;
+    	}
+		// paper.view.onFrame = function(event) { 
+		// 	console.log(event);
 
+		// }
 
 
         // window.skeletonPositionData = skeletonPositionData;
@@ -50,7 +61,7 @@
     	var name = rootObj[0]
     	var x = rootObj[1];
     	var y = rootObj[2];
-		window.skeletonPositionData[name] = {x: x, y: y};	
+		window.echoingEgo.data[name] = {x: x, y: y};	
     }
 
 </script>

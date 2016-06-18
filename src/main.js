@@ -15,14 +15,9 @@ paper.project.importSVG("assets/test.svg", function(item) {
 });
 var counter = 0;
 
-function onFrame(event) {
-	
-	if(window.skeletonPositionData != undefined && window.skeletonPositionData != undefined){
-		if(window.skeletonPositionData["/righthand_pos"]!= undefined && window.skeletonPositionData["/righthand_pos"] != undefined){
-			group.position = [window.skeletonPositionData["/righthand_pos"]["x"], window.skeletonPositionData["/righthand_pos"]["y"]];
-		}
-	}
+window.echoingEgo.initializeOnFrame = function() {
+	paper.view.onFrame = function(event) { 
 
-	counter++;
-	// console.log();
+		group.position = [window.echoingEgo.data["/righthand_pos"]["x"], window.echoingEgo.data["/righthand_pos"]["y"]];
+	}
 }
