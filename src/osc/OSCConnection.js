@@ -1,9 +1,8 @@
 'use strict';
 
-class OSCRunner {
-	run(){
+var OSCConnection = {
+	start: function(){
 		var socket = io.connect('http://127.0.0.1', { port: 8081, rememberTransport: true});
-		  console.log('oi');
 		  socket.on('connect', function() {
 		// sends to socket.io server the host/port of oscServer
 		// and oscClient
@@ -21,15 +20,14 @@ class OSCRunner {
 		);
 		});
 
-		window.echoingEgo.data = {}; 
 		var isOnce = true;
 		socket.on('message', function(obj) {
-		var parser = new OSCMessageParser()
-		parser.parse(obj)
-		if(isOnce){
-			window.echoingEgo.initializeOnFrame();	
-			isOnce = false;
-		}
+			var parser = new OSCMessageParser()
+			parser.parse(obj)
+			if(isOnce){
+				window.echoingEgo.initializeOnFrame();	
+				isOnce = false;
+			}
 		});
     }
 }

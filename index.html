@@ -12,17 +12,15 @@
     <script type="text/javascript" src="src/scenes/physicalBound.js"></script>
 
     <script type="text/javascript" src="src/osc/OSCMessageParser.js" canvas="myCanvas"></script>
-    <script type="text/javascript" src="src/osc/OSCRunner.js" canvas="myCanvas"></script>
+    <script type="text/javascript" src="src/osc/OSCConnection.js" canvas="myCanvas"></script>
 
     <script type="text/paperscript" src="src/main.js" canvas="myCanvas"></script>
     <script src="http://127.0.0.1:8081/socket.io/socket.io.js"></script>
     
     <script>
     window.echoingEgo = {};
-    var socketRunner = new OSCRunner()
-    socketRunner.run();
- 	
-
+    window.echoingEgo.data = {}; 
+    OSCConnection.start(window.echoingEgo.data);
 </script>
 </head>
 <body>
