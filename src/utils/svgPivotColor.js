@@ -70,7 +70,9 @@ class svgPivotColor {
       }
     }
   }
-   update() {
+   update(position, energy) {
+   	this.group.position = position;
+   	this.energy = energy;
     this.counter++;
     if (this.group.children[0] != undefined) {
       var root = this.group.children[0];
