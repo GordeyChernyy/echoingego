@@ -11,55 +11,17 @@
     <script type="text/javascript" src="src/scenes/sceneBase.js"></script>
     <script type="text/javascript" src="src/scenes/physicalBound.js"></script>
 
+    <script type="text/javascript" src="src/osc/OSCMessageParser.js" canvas="myCanvas"></script>
+    <script type="text/javascript" src="src/osc/OSCRunner.js" canvas="myCanvas"></script>
+
     <script type="text/paperscript" src="src/main.js" canvas="myCanvas"></script>
     <script src="http://127.0.0.1:8081/socket.io/socket.io.js"></script>
     
     <script>
     window.echoingEgo = {};
-
- 	  var socket = io.connect('http://127.0.0.1', { port: 8081, rememberTransport: true});
-   	  console.log('oi');
-   	  socket.on('connect', function() {
-        // sends to socket.io server the host/port of oscServer
-        // and oscClient
-	    socket.emit('config',
-	        {
-	            server: {
-	                port: 3333,
-	                host: '127.0.0.1'
-	            },
-	            client: {
-	                port: 3334,
-	                host: '127.0.0.1'
-	            }
-	        }
-	    );
-    });
-
-   	window.echoingEgo.data = {}; 
-   	var isOnce = true;
-    socket.on('message', function(obj) {
-
-    	parseOSCObj(obj)
-    	if(isOnce){
-			window.echoingEgo.initializeOnFrame();	
-			isOnce = false;
-    	}
-    });
-
-    var parseOSCObj = function(obj){
-    	var rootObj = obj[2]
-    	var righthand_pos;
-   		var lefthand_pos;
-   		updatePositions(rootObj);
-    }
-
-    var updatePositions = function (rootObj) {
-    	var name = rootObj[0]
-    	var x = rootObj[1];
-    	var y = rootObj[2];
-		window.echoingEgo.data[name] = {x: x, y: y};	
-    }
+    var socketRunner = new OSCRunner()
+    socketRunner.run();
+ 	
 
 </script>
 </head>
