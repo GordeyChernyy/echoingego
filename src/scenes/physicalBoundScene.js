@@ -1,13 +1,13 @@
 'use strict';
-class physicalBound extends sceneBase {
+class physicalBoundScene extends sceneBase {
 	setup() {
 		super.addLayer();
-		this.name = "physicalBound";
+		this.name = "physicalBoundScene";
 
 		this.righthand = new svgPivotColor({
 			path: 'assets/svg/BubblesInBoxMask/rootMouth.svg',
 			pivot: [0, 0],
-			energy: 20,
+			energy: 0,
 			speed: 5,
 			fadeForce: 19,
 		});
@@ -21,9 +21,10 @@ class physicalBound extends sceneBase {
 
 	}
 	update(data) {
-		var rhand = data["/righthand_pos"];
-		var lhand = data["/lefthand_pos"];
-		var head = data["/head_pos"];
+		var rhand = data["r_hand"];
+		var lhand = data["l_hand"];
+		var head = data["/head"];
+		// console.log(rhand.x);
 		this.righthand.update([rhand.x, rhand.y], 12.5);
 		this.lefthand.update([lhand.x, lhand.y], 12.5);
 	}

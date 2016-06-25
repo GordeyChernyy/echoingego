@@ -9,11 +9,11 @@ var OSCConnection = {
 		socket.emit('config',
 		    {
 		        server: {
-		            port: 3333,
+		            port: 7400,
 		            host: '127.0.0.1'
 		        },
 		        client: {
-		            port: 3334,
+		            port: 7400,
 		            host: '127.0.0.1'
 		        }
 		    }
@@ -21,11 +21,12 @@ var OSCConnection = {
 		});
 
 		var isOnce = true;
-		socket.on('message', function(obj) {
 			var parser = new OSCMessageParser()
+		socket.on('message', function(obj) {
 			parser.parse(obj)
 			if(isOnce){
 				window.echoingEgo.initializeOnFrame();	
+				parser.setup();
 				isOnce = false;
 			}
 		});

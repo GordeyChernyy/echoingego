@@ -3,7 +3,7 @@ class sceneManager {
 	setup() {
 		console.log("sceneManager setup" );
 		this.scenes = [
-			new physicalBound(),
+			new physicalBoundScene(),
 		]
 		this.curScNum = 0;
 		for (var i = 0; i < this.scenes.length; i++) {
