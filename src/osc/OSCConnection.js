@@ -16,17 +16,29 @@ var OSCConnection = {
 		            port: 7400,
 		            host: '127.0.0.1'
 		        }
+		        // server: {
+		        //     port: 3333,
+		        //     host: '127.0.0.1'
+		        // },
+		        // client: {
+		        //     port: 3333,
+		        //     host: '127.0.0.1'
+		        // }
 		    }
 		);
 		});
 
 		var isOnce = true;
+		var isOnce2 = true;
 			var parser = new OSCMessageParser()
 		socket.on('message', function(obj) {
+			if(isOnce2){
+				parser.setup();
+				isOnce2 = false;
+			}
 			parser.parse(obj)
 			if(isOnce){
 				window.echoingEgo.initializeOnFrame();	
-				parser.setup();
 				isOnce = false;
 			}
 		});
