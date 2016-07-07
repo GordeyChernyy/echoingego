@@ -40,8 +40,9 @@ class OSCMessageParser {
 	if(window.isLocal){ // --------------- local data
 		var rootObj = obj[2];
 		var name = rootObj[0];
-		var x = rootObj[1];
-		var y = rootObj[2];
+		var scale = 1.3;
+		var x = rootObj[1]*scale+100;
+		var y = rootObj[2]*scale+50;
 
 		if(Object.keys(window.echoingEgo.data).length > 0 && window.echoingEgo.data[name] != null){
 			x2 = window.echoingEgo.data[name].x;
@@ -63,7 +64,9 @@ class OSCMessageParser {
 			x2 = window.echoingEgo.data[name].x;
 			y2 = window.echoingEgo.data[name].y;
 			var velocity = Math.sqrt((x2-=x)*x2 + (y2-=y)*y2);
-			window.echoingEgo.data[name].velocity = velocity; 
+			var smooth = 0.9;
+			window.echoingEgo.data[name].velocity = window.echoingEgo.data[name].velocity*(smooth) +  (1-smooth)*velocity; 
+
 		}
 		window.echoingEgo.data[name]["x"] = x;	
 		window.echoingEgo.data[name]["y"] = y;	

@@ -5,16 +5,30 @@ class physicalBoundScene extends sceneBase {
 		this.name = "physicalBoundScene";
 		this.circles = [];
 		this.velocityData = {};
-		this.righthand = new svgPivotColor({
-			path: 'assets/svg/BubblesInBoxMask/rootMouth.svg',
+
+		this.bg = new paper.Path.Rectangle({
+			from: [0, 0],
+			to: paper.view.size,
+			fillColor: 'LightYellow',
+		})
+		this.lhand = new svgPivotColor({
+			path: 'assets/svg/PhysBounds/rootHand.svg',
 			pivot: [0, 0],
 			energy: 0,
 			speed: 5,
 			fadeForce: 19,
 		});
 
-		this.lefthand = new svgPivotColor({
-			path: 'assets/svg/BubblesInBoxMask/rootHead.svg',
+		this.head = new svgPivotColor({
+			path: 'assets/svg/PhysBounds/rootHead.svg',
+			pivot: [0, 0],
+			energy: 20,
+			speed: 5,
+			fadeForce: 19,
+		});
+
+		this.leg = new svgPivotColor({
+			path: 'assets/svg/PhysBounds/rootLeg.svg',
 			pivot: [0, 0],
 			energy: 20,
 			speed: 5,
@@ -28,11 +42,35 @@ class physicalBoundScene extends sceneBase {
 			});
 			this.circles.push(path);
 		}
+		this.poetry = new paper.PointText();
+		this.poetry.content = "I've got nothing to claim\nnot even the place where I stay\nbecause if you give a fish\na bowl you take its ocean away"
+		this.poetry.position = [100, 100];
+		
+		this.title = new paper.PointText({
+		 	content: "Your ego without: ",
+			fontFamily: "Lucida Console",
+			fontSize: 20,
+		});
+		this.title2 = new paper.PointText({
+		 	content: "physical boundaries",
+			fontFamily: this.title.fontFamily,
+			fontSize: this.title.fontSize,
+			fontWeight: 'bold',
+			justification: "left",
+		});
+		var w = this.title.bounds['_width'] +  this.title2.bounds['_width'];
+		var posX = (paper.view.size.width - w)/2;
+		var posY = 40;
+
+		this.title.point = [posX, posY];
+		this.title2.point = [posX+this.title.bounds['_width'], posY];
+
+		console.log(this.title.bounds); 
+		console.log(this.title.justification); 
 		this.counter = 0;
 		this.velocity = 0;
 	}
 	update(data) {
-
 		this.counter++;
 		// var l_shoulder = data["l_shoulder"] ;
 		// var l_elbow = data["l_elbow"] ;
@@ -58,13 +96,16 @@ class physicalBoundScene extends sceneBase {
    		}
 		// for (var i = 0; i < 14; i++) {
 		// }
-		var rhand = data["/righthand_pos"];
-		var lhand = data["/lefthand_pos"];
+		var rhand = data[window.names["r_hand"]];
+		var lhand = data[window.names["l_hand"]];
+		var head = data[window.names["head"]];
+		var lleg = data[window.names["l_foot"]];
+		// this.text.position = [rhand.x, rhand.y];
 		// var head = data["/head_pos"];
 		// console.log(rhand.x);
-		console.log("rhand.velocity = " + rhand.velocity);
-		this.righthand.update([rhand.x, rhand.y], rhand.velocity);
-		this.lefthand.update([lhand.x, lhand.y], lhand.velocity);
+		this.lhand.update([lhand.x, lhand.y], lhand.velocity);
+		this.head.update([head.x, head.y], head.velocity*2.);
+		this.leg.update([lleg.x, lleg.y], lleg.velocity*2.);
 	}
 	show() {
 		this.showLayer();
