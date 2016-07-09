@@ -55,21 +55,25 @@ class OSCMessageParser {
 		window.echoingEgo.data[name]["y"] = y;	
 	}else{ // --------------- julia data
 		var name = obj[0];
-		var x = obj[1]+500;
-		var y = obj[2]+300;
-		
-		var x2;
-		var y2;
-		if(Object.keys(window.echoingEgo.data).length > 0 && window.echoingEgo.data[name] != null){
-			x2 = window.echoingEgo.data[name].x;
-			y2 = window.echoingEgo.data[name].y;
-			var velocity = Math.sqrt((x2-=x)*x2 + (y2-=y)*y2);
-			var smooth = 0.9;
-			window.echoingEgo.data[name].velocity = window.echoingEgo.data[name].velocity*(smooth) +  (1-smooth)*velocity; 
+		if(name=="person"){
+			console.log(obj[1]);
+		}else{
+			var x = obj[1]*0.3+500;
+			var y = -obj[2]*0.3+300;
+			
+			var x2;
+			var y2;
+			if(Object.keys(window.echoingEgo.data).length > 0 && window.echoingEgo.data[name] != null){
+				x2 = window.echoingEgo.data[name].x;
+				y2 = window.echoingEgo.data[name].y;
+				var velocity = Math.sqrt((x2-=x)*x2 + (y2-=y)*y2);
+				var smooth = 0.9;
+				window.echoingEgo.data[name].velocity = window.echoingEgo.data[name].velocity*(smooth) +  (1-smooth)*velocity; 
 
+			}
+			window.echoingEgo.data[name]["x"] = x;	
+			window.echoingEgo.data[name]["y"] = y;	
 		}
-		window.echoingEgo.data[name]["x"] = x;	
-		window.echoingEgo.data[name]["y"] = y;	
 	}
 
 

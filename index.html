@@ -20,40 +20,40 @@
     <script>
     window.echoingEgo = {};
 // ------------ from julia
-    window.names = {
-        r_hand:"r_hand",
-        l_hand:"l_hand",
-        r_elbow:"r_elbow",
-        l_elbow:"l_elbow",
-        r_foot:"r_foot"
-        l_foot:"l_foot",
-        r_knee:"r_knee",
-        head:"head",
-        torso:"torso",
-        l_shoulder:"l_shoulder",
-        r_shoulder:"r_shoulder",
-        l_knee:"l_knee",
-        l_hip:"l_hip",
-        r_hip:"r_hip"
-    };  
-// ------------ from my app
     // window.names = {
-    //     r_hand: "/righthand_pos",
-    //     l_hand: "/lefthand_pos",
-    //     r_elbow: "/leftelbow_pos",
-    //     l_elbow: "/rightelbow_pos",
-    //     r_foot: "/rightfoot_pos",
-    //     l_foot: "/leftfoot_pos",
-    //     r_knee: "/rightknee_pos",
-    //     head: "/head_pos",
-    //     torso: "/torso_pos",
-    //     l_shoulder: "/leftshoulder_pos",
-    //     r_shoulder: "/rightshoulder_pos",
-    //     l_knee: "/leftknee_pos",
-    //     l_hip: "/lefthip_pos",
-    //     r_hip: "/righthip_pos"
-    // };
-    window.isLocal = false;
+    //     r_hand:"r_hand",
+    //     l_hand:"l_hand",
+    //     r_elbow:"r_elbow",
+    //     l_elbow:"l_elbow",
+    //     r_foot:"r_foot",
+    //     l_foot:"l_foot",
+    //     r_knee:"r_knee",
+    //     head:"head",
+    //     torso:"torso",
+    //     l_shoulder:"l_shoulder",
+    //     r_shoulder:"r_shoulder",
+    //     l_knee:"l_knee",
+    //     l_hip:"l_hip",
+    //     r_hip:"r_hip"
+    // };  
+// ------------ from my app
+    window.names = {
+        r_hand: "/righthand_pos",
+        l_hand: "/lefthand_pos",
+        r_elbow: "/leftelbow_pos",
+        l_elbow: "/rightelbow_pos",
+        r_foot: "/rightfoot_pos",
+        l_foot: "/leftfoot_pos",
+        r_knee: "/rightknee_pos",
+        head: "/head_pos",
+        torso: "/torso_pos",
+        l_shoulder: "/leftshoulder_pos",
+        r_shoulder: "/rightshoulder_pos",
+        l_knee: "/leftknee_pos",
+        l_hip: "/lefthip_pos",
+        r_hip: "/righthip_pos"
+    };
+    window.isLocal = true;
     window.echoingEgo.data = {}; 
     OSCConnection.start(window.echoingEgo.data);
 </script>

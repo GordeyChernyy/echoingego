@@ -18,7 +18,13 @@ class physicalBoundScene extends sceneBase {
 			speed: 5,
 			fadeForce: 19,
 		});
-
+		this.rhand = new svgPivotColor({
+			path: 'assets/svg/PhysBounds/rootHand.svg',
+			pivot: [0, 0],
+			energy: 0,
+			speed: 5,
+			fadeForce: 19,
+		});
 		this.head = new svgPivotColor({
 			path: 'assets/svg/PhysBounds/rootHead.svg',
 			pivot: [0, 0],
@@ -88,13 +94,13 @@ class physicalBoundScene extends sceneBase {
 		// var r_foot = data["r_foot"] ;
 		// this.circles[0].position = [data["head"]["x"], data["head"]["y"]];
 		var i = 0;
-		for(var propt in data) {
-      		// console.log(propt);//logs name
-      		// console.log(data[propt]);//logs "Simon"
-			this.circles[i].position = [data[propt].x, data[propt].y];
-			i++;
-   		}
-		// for (var i = 0; i < 14; i++) {
+		// for(var propt in data) {
+  //     		// console.log(propt);//logs name
+  //     		// console.log(data[propt]);//logs "Simon"
+		// 	this.circles[i].position = [data[propt].x, data[propt].y];
+		// 	i++;
+  //  		}
+		// // for (var i = 0; i < 14; i++) {
 		// }
 		var rhand = data[window.names["r_hand"]];
 		var lhand = data[window.names["l_hand"]];
@@ -103,7 +109,9 @@ class physicalBoundScene extends sceneBase {
 		// this.text.position = [rhand.x, rhand.y];
 		// var head = data["/head_pos"];
 		// console.log(rhand.x);
+		this.rhand.group.scaling = [-1, 1];
 		this.lhand.update([lhand.x, lhand.y], lhand.velocity);
+		this.rhand.update([rhand.x, rhand.y], rhand.velocity);
 		this.head.update([head.x, head.y], head.velocity*2.);
 		this.leg.update([lleg.x, lleg.y], lleg.velocity*2.);
 	}
