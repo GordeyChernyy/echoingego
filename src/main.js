@@ -1,6 +1,6 @@
 'use strict';
 var SM = new sceneManager();
-var menu = new Menu();
+var menu = new Menu(SM);
 SM.setup();
 menu.setup();
 // launchFullscreen(document.documentElement);
