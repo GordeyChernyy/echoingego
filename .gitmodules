@@ -1,0 +1,3 @@
+[submodule "javascript/osc-web"]
+	path = javascript/osc-web
+	url = https://github.com/Dewb/osc-web.git
