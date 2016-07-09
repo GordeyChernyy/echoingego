@@ -21,13 +21,13 @@ class sceneManager {
 	}
 
 	setSceneByName(name) {
-		this.hideMask();
+		this.hideScene();
 		var index = this.names.indexOf(name);
 
 		if (index >= 0) {
 			this.curScNum = index;
 		}
-		this.showMask();
+		this.showScene();
 	};
 
 	hideScene() {
