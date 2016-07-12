@@ -2,7 +2,6 @@
 
 class OSCMessageParser {
 	setup(){
-		console.log("setup = ");
 		if(!window.isLocal){
 			window.echoingEgo.data["l_shoulder"] = {x: 0, y: 0, velocity: 0};
 			window.echoingEgo.data["l_elbow"] = {x: 0, y: 0, velocity: 0};

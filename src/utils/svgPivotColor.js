@@ -11,6 +11,8 @@ class svgPivotColor {
     this.levelCount = 0;
     this.randomNum = [];
     this.angle = 0;
+    this.keyObj;
+    this.lockObj;
     var self = this;
     paper.project.importSVG(d.path, function(item) {
       self.setPivot(item.children[0]);
@@ -27,6 +29,14 @@ class svgPivotColor {
       this.randomNum.push(calc.random(1, 5));
       // add shadow
 
+      if(item.children[i].name == 'key'){
+        this.keyObj =  item.children[i];
+        // console.log( item.children[i].name );
+      }
+      if(item.children[i].name == 'lock'){
+        this.lockObj =  item.children[i];
+        // console.log( item.children[i].name );
+      }
       if (item.children[i].className == 'Path' || item.children[i].className == 'Shape') {
         var path = item.children[i];
       }
@@ -70,9 +80,25 @@ class svgPivotColor {
       }
     }
   }
-   update(position, energy) {
+  update(position, energy) {
    	this.group.position = position;
    	this.energy = energy;
+    this.counter++;
+    if (this.group.children[0] != undefined) {
+      var root = this.group.children[0];
+      root.rotation = this.angle + Math.cos(this.counter / 20 + 100) * this.energy;
+      this.rotate(root);
+    }
+  }
+  fade(position, energy) {
+    this.group.position = this.group.position.add([Math.cos(this.counter/20)*energy+5, Math.sin(this.counter/20)*energy]);
+    this.group.opacity -= 0.02;
+    if(this.group.scaling.x > 0.02){
+      this.group.scaling = this.group.scaling.subtract([0.02, 0.02]);
+    }else{
+      console.log("finished");
+    }
+    this.energy = energy;
     this.counter++;
     if (this.group.children[0] != undefined) {
       var root = this.group.children[0];

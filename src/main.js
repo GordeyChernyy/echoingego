@@ -1,6 +1,9 @@
 'use strict';
 var SM = new sceneManager();
 SM.setup();
+
+
+
 // launchFullscreen(document.documentElement);
 // function launchFullscreen(element) {
 //     if (element.requestFullscreen) {
@@ -15,7 +18,10 @@ SM.setup();
 // }
 
 window.echoingEgo.initializeOnFrame = function() {
-	paper.view.onFrame = function(event) { 
-		SM.update(window.echoingEgo.data);
-	}
+	// paper.view.onFrame = function(event) { 
+	// 	SM.update(window.echoingEgo.data);
+	// }
+}
+function onMouseMove(event) {
+	SM.update(event.point);
 }
