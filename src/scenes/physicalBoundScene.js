@@ -32,7 +32,7 @@ class physicalBoundScene extends sceneBase {
 
 		this.poetry = new paper.PointText();
 		this.poetry.content = "I've got nothing to claim\nnot even the place where I stay\nbecause if you give a fish\na bowl you take its ocean away"
-		this.poetry.position = [100, 100];
+		this.poetry.position = [400, 400];
 		
 		this.title = new paper.PointText({
 		 	content: "Your ego without: ",
