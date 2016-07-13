@@ -8,6 +8,7 @@ class physicalBoundScene extends sceneBase {
 		this.runOnce = true;
 		this.minDistance = 20;
 		this.isFade = true;
+		this.isFinished = false;
 		this.bg = new paper.Path.Rectangle({
 			from: [0, 0],
 			to: paper.view.size,
@@ -83,12 +84,17 @@ class physicalBoundScene extends sceneBase {
 			this.rhand.fade(point, 5);
 			this.leg.fade([200, 500], 2);
 			if(this.rhand.isSolved){
+				this.isFinished = true;
 				this.hideLayer();
 				this.isFade = false;
+			}
+			if(this.rhand.isFinished){
+				this.isFinished = true;
 			}
 		}else{
 			this.rhand.update(point, 5);
 			this.leg.update([200, 500], 2);
+
 		}
 
 		// calculate lock and key pos
@@ -108,6 +114,8 @@ class physicalBoundScene extends sceneBase {
 	}
 	show() {
 		this.showLayer();
+		this.isFinished = false;
+		console.log("physicalBoundScene");
 		this.runOnce = true;
 		this.isFade = false;
 	}

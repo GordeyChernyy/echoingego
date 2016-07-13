@@ -1,8 +1,16 @@
 'use strict';
 var SM = new sceneManager();
-var menu = new Menu(SM);
 SM.setup();
+
+var menu = new Menu(SM);
 menu.setup();
+var layer = new paper.Layer();
+var pointer = new Path.Circle({
+	fillColor: 'red',
+	radius: 20,
+	visible: false,
+});
+
 // launchFullscreen(document.documentElement);
 // function launchFullscreen(element) {
 //     if (element.requestFullscreen) {
@@ -22,5 +30,7 @@ window.echoingEgo.initializeOnFrame = function() {
 	// }
 }
 function onMouseMove(event) {
+	pointer.position = event.point;
 	SM.update(event.point);
+	menu.update(pointer);
 }

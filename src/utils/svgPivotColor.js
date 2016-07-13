@@ -13,6 +13,7 @@ class svgPivotColor {
     this.angle = 0;
     this.keyObj;
     this.lockObj;
+    this.isFinished = false;
     var self = this;
     paper.project.importSVG(d.path, function(item) {
       self.setPivot(item.children[0]);
@@ -96,7 +97,7 @@ class svgPivotColor {
     if(this.group.scaling.x > 0.02){
       this.group.scaling = this.group.scaling.subtract([0.02, 0.02]);
     }else{
-      console.log("finished");
+      this.isFinished = true;
     }
     this.energy = energy;
     this.counter++;

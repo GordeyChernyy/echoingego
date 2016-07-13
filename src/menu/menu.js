@@ -2,28 +2,50 @@
 class Menu {
 	constructor(sceneManager) {
     	this.sceneManager = sceneManager;
-    	this.spaceBetweenMenuItems = 70
+    	this.spaceBetweenMenuItems = 70;
   	}
-
 	setup() {
-		var menuItems = [this.createMenuItem("physicalBoundScene"), this.createMenuItem("Next Scene")]
-		for (var i = 0; i < menuItems.length; i++) {
-			menuItems[i].pivot = menuItems[i].bounds.rightCenter;
-			menuItems[i].position = {x: 200, y: (100 + (i *this.spaceBetweenMenuItems))}
+		var layer = new paper.Layer();
+		this.isOver = false;
+		this.isOverP = false;
+		this.clickCounter = 0;
+		this.menuItems = [
+			this.createMenuItem("physicalBoundScene"), 
+			this.createMenuItem("rationalizationScene")
+		];
+		for (var i = 0; i < this.menuItems.length; i++) {
+			this.menuItems[i].group.pivot = this.menuItems[i].group.bounds.rightCenter;
+			this.menuItems[i].group.position = {x: 200, y: (100 + (i *this.spaceBetweenMenuItems))}
 		}
 	}
-
+	update(path){
+		for (var i = 0; i < this.menuItems.length; i++) {
+			if(path.bounds.intersects(this.menuItems[i].group.bounds)){
+				this.menuItems[i].isOver = true;
+				this.menuItems[i].group.children[0].fillColor = 'red';
+			}else{
+				this.menuItems[i].isOver = false;
+				this.menuItems[i].group.children[0].fillColor = [0, 0.5];
+			}
+			if(this.menuItems[i].isOverP != this.menuItems[i].isOver){
+				if(this.clickCounter%2==0){
+					this.sceneManager.setSceneByName(this.menuItems[i].name);
+					console.log(this.menuItems[i].name);
+				} 
+					
+				this.clickCounter++;
+			}
+			this.menuItems[i].isOverP  = this.menuItems[i].isOver ;
+		}
+	}
 	createMenuItem(sceneName, position) {
-		var layer = new paper.Layer();
 		var background = new paper.Path.Rectangle({
 			size: [10, 10],
 		})
 		var text = new paper.PointText();
 
 		text.content = sceneName;
-		
 		text.fillColor = "White";
-		
 		background.bounds.width = text.bounds.width + 25
 		background.bounds.height = text.bounds.height + 25
 		background.fillColor = new paper.Color(0,0.5);
@@ -35,11 +57,12 @@ class Menu {
 
 		var self = this;
 
-		group.onMouseMove = function(e){
-			self.sceneManager.setSceneByName(sceneName);
-		}
-
-		return group;
+		return { 
+			group: group,
+			name: sceneName,
+			isOver: false,
+			isOverP: false,
+		};
 	}
 }
 

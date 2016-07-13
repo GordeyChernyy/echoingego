@@ -4,6 +4,8 @@ class sceneManager {
 		console.log("sceneManager setup" );
 		this.scenes = [
 			new physicalBoundScene(),
+			new rationalizationScene(),
+			new menuScene()
 		]
 		this.curScNum = 0;
 		for (var i = 0; i < this.scenes.length; i++) {
@@ -18,6 +20,12 @@ class sceneManager {
 	
 	update(data) {
 		this.scenes[this.curScNum].update(data);
+		if(this.scenes[this.curScNum].isFinished != undefined){
+			if(this.scenes[this.curScNum].isFinished){
+				console.log(this.scenes[this.curScNum].isFinished);
+				this.setSceneByName('menuScene');
+			} 
+		}
 	}
 
 	setSceneByName(name) {
