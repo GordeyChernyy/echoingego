@@ -9,34 +9,31 @@ class physicalBoundScene extends sceneBase {
 		this.minDistance = 20;
 		this.isFade = true;
 		this.isFinished = false;
+		this.bgGroup = new paper.Group();
 		this.bg = new paper.Path.Rectangle({
 			from: [0, 0],
 			to: paper.view.size,
-			fillColor: 'LightYellow',
+			fillColor: 'darkRed',
 		})
-		
-		this.rhand = new svgPivotColor({
-			path: 'assets/svg/PhysBounds/rootHand.svg',
-			pivot: [0, 0],
-			energy: 0,
-			speed: 5,
-			fadeForce: 19,
-		});
+		this.parts = {
+			rhand: new svgPivotColor({
+				path: 'assets/svg/PhysBounds/rootHand.svg',
+				pivot: [0, 0],
+				energy: 0,
+				speed: 5,
+				fadeForce: 19,
+			}),
+			leg: new svgPivotColor({
+				path: 'assets/svg/PhysBounds/rootLeg.svg',
+				pivot: [0, 0],
+				energy: 20,
+				speed: 5,
+				fadeForce: 19,
+			})
+		};
 
-		this.leg = new svgPivotColor({
-			path: 'assets/svg/PhysBounds/rootLeg.svg',
-			pivot: [0, 0],
-			energy: 20,
-			speed: 5,
-			fadeForce: 19,
-		});
-
-		this.poetry = new paper.PointText();
-		this.poetry.content = "I've got nothing to claim\nnot even the place where I stay\nbecause if you give a fish\na bowl you take its ocean away"
-		this.poetry.position = [400, 400];
-		
 		this.title = new paper.PointText({
-		 	content: "Your ego without: ",
+		 	content: "Your ego is about ",
 			fontFamily: "Lucida Console",
 			fontSize: 20,
 		});
@@ -66,6 +63,12 @@ class physicalBoundScene extends sceneBase {
 		console.log(this.title.justification); 
 		this.counter = 0;
 		this.velocity = 0;
+		
+		this.bgGroup.addChild(this.bg);
+		this.bgGroup.addChild(this.title);
+		this.bgGroup.addChild(this.title2);
+		this.opacity = 0;
+
 	}
 	getKeyPos(key){
 		return key.keyObj.localToGlobal().add(key.keyObj.position);
@@ -81,43 +84,61 @@ class physicalBoundScene extends sceneBase {
 		// var lleg = data[window.names["l_foot"]];
 
 		if(this.isFade){
-			this.rhand.fade(point, 5);
-			this.leg.fade([200, 500], 2);
-			if(this.rhand.isSolved){
+			for (var prop in this.parts) {
+				this.parts[prop].fadeOut(point, 2);
+			}
+			if(this.parts['rhand'].isSolved){
 				this.isFinished = true;
 				this.hideLayer();
 				this.isFade = false;
 			}
-			if(this.rhand.isFinished){
+			if(this.parts['rhand'].isFinished){
 				this.isFinished = true;
 			}
-		}else{
-			this.rhand.update(point, 5);
-			this.leg.update([200, 500], 2);
 
+			this.bgGroup.opacity = this.opacity;
+			this.opacity -= 0.02;
+			
+			if(this.opacity<0){
+				this.opacity = 0;
+			}
+		}else{
+			this.parts['rhand'].update(point, 5);
+			this.parts['leg'].update([200, 500], 2);
+
+			this.bgGroup.opacity = this.opacity;
+			this.opacity += 0.02;
+			
+			if(this.opacity>1){
+				this.opacity = 1;
+			}
 		}
 
 		// calculate lock and key pos
-		var lockPos = this.getLockPos(this.rhand);
-		var keyPos = this.getKeyPos(this.leg);
-		// this.circle.position = keyPos;
-		// this.circle2.position = lockPos;
+		var lockPos = this.getLockPos(this.parts['rhand']);
+		var keyPos = this.getKeyPos(this.parts['leg']);
 		var distance = keyPos.getDistance(lockPos);
 
 		// lock solved
 		if(distance < this.minDistance && this.runOnce){
-			console.log("solved");
-			this.rhand.lockObj.opacity = 0.5;
+			this.parts['rhand'].lockObj.opacity = 0.5;
+			window.poemContent = "I've got nothing to claim\nnot even the place where I stay\nbecause if you give a fish\na bowl you take its ocean away";
 			this.isFade = true;
 			this.runOnce = false;
 		}
+
+
+
 	}
 	show() {
 		this.showLayer();
 		this.isFinished = false;
-		console.log("physicalBoundScene");
 		this.runOnce = true;
 		this.isFade = false;
+		this.bgGroup.opacity = 0;
+		for (var prop in this.parts) {
+			this.parts[prop].reset();
+		}
 	}
 
 	hide() {

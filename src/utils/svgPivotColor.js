@@ -14,6 +14,7 @@ class svgPivotColor {
     this.keyObj;
     this.lockObj;
     this.isFinished = false;
+    this.isFadeInFinished = false;
     var self = this;
     paper.project.importSVG(d.path, function(item) {
       self.setPivot(item.children[0]);
@@ -21,7 +22,12 @@ class svgPivotColor {
       self.group.pivot = self.rootPivot.add(d.pivot);
       self.group.transformContent = false;
       this.loaded = true;
+      self.group.opacity = 0.02;
+      self.group.scaling = [0.02, 0.02];
     });
+  }
+  reset(){
+    this.isFinished = false;
   }
   setPivot(item) {
     // iterate through hierarchy
@@ -82,22 +88,29 @@ class svgPivotColor {
     }
   }
   update(position, energy) {
-   	this.group.position = position;
-   	this.energy = energy;
-    this.counter++;
-    if (this.group.children[0] != undefined) {
-      var root = this.group.children[0];
-      root.rotation = this.angle + Math.cos(this.counter / 20 + 100) * this.energy;
-      this.rotate(root);
+    if(this.isFadeInFinished){
+     	this.group.position = position;
+     	this.energy = energy;
+      this.counter++;
+      if (this.group.children[0] != undefined) {
+        var root = this.group.children[0];
+        root.rotation = this.angle + Math.cos(this.counter / 20 + 100) * this.energy;
+        this.rotate(root);
+      }
+    }else{
+      this.fadeIn(position, energy);
     }
   }
-  fade(position, energy) {
+  fadeOut(position, energy) {
     this.group.position = this.group.position.add([Math.cos(this.counter/20)*energy+5, Math.sin(this.counter/20)*energy]);
     this.group.opacity -= 0.02;
     if(this.group.scaling.x > 0.02){
       this.group.scaling = this.group.scaling.subtract([0.02, 0.02]);
     }else{
       this.isFinished = true;
+      this.isFadeInFinished = false;
+      this.group.opacity = 0;
+      this.group.scaling = 0.02;
     }
     this.energy = energy;
     this.counter++;
@@ -106,5 +119,20 @@ class svgPivotColor {
       root.rotation = this.angle + Math.cos(this.counter / 20 + 100) * this.energy;
       this.rotate(root);
     }
+  }
+  fadeIn(position, energy){
+    this.group.position = position;
+    this.group.opacity += 0.02;
+    this.group.scaling = this.group.scaling.add([0.02, 0.02]);
+    this.energy = energy;
+    this.counter++;
+    if (this.group.children[0] != undefined) {
+      var root = this.group.children[0];
+      root.rotation = this.angle + Math.cos(this.counter / 20 + 100) * this.energy;
+      this.rotate(root);
+    }
+    if(this.group.scaling.x>1){
+      this.isFadeInFinished = true;
+    } 
   }
 }

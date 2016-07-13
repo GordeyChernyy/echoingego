@@ -1,7 +1,9 @@
 'use strict';
 var SM = new sceneManager();
 SM.setup();
-
+SM.setSceneByName('menuScene');
+var audio = new Audio('assets/audio/master.wav');
+audio.play();
 var menu = new Menu(SM);
 menu.setup();
 var layer = new paper.Layer();

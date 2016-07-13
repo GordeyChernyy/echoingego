@@ -19,23 +19,25 @@ class Menu {
 		}
 	}
 	update(path){
-		for (var i = 0; i < this.menuItems.length; i++) {
-			if(path.bounds.intersects(this.menuItems[i].group.bounds)){
-				this.menuItems[i].isOver = true;
-				this.menuItems[i].group.children[0].fillColor = 'red';
-			}else{
-				this.menuItems[i].isOver = false;
-				this.menuItems[i].group.children[0].fillColor = [0, 0.5];
+		if(this.sceneManager.getCurSceneName() == 'menuScene'){
+			for (var i = 0; i < this.menuItems.length; i++) {
+				if(path.bounds.intersects(this.menuItems[i].group.bounds)){
+					this.menuItems[i].isOver = true;
+					this.menuItems[i].group.children[0].fillColor = 'red';
+				}else{
+					this.menuItems[i].isOver = false;
+					this.menuItems[i].group.children[0].fillColor = [0, 0.5];
+				}
+				if(this.menuItems[i].isOverP != this.menuItems[i].isOver){
+					if(this.clickCounter%2==0){
+						this.sceneManager.setSceneByName(this.menuItems[i].name);
+						console.log(this.menuItems[i].name);
+					} 
+						
+					this.clickCounter++;
+				}
+				this.menuItems[i].isOverP  = this.menuItems[i].isOver ;
 			}
-			if(this.menuItems[i].isOverP != this.menuItems[i].isOver){
-				if(this.clickCounter%2==0){
-					this.sceneManager.setSceneByName(this.menuItems[i].name);
-					console.log(this.menuItems[i].name);
-				} 
-					
-				this.clickCounter++;
-			}
-			this.menuItems[i].isOverP  = this.menuItems[i].isOver ;
 		}
 	}
 	createMenuItem(sceneName, position) {

@@ -27,7 +27,9 @@ class sceneManager {
 			} 
 		}
 	}
-
+	getCurSceneName(){
+		return this.names[this.curScNum];
+	}
 	setSceneByName(name) {
 		this.hideScene();
 		var index = this.names.indexOf(name);
