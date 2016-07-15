@@ -3,11 +3,11 @@ class sceneManager {
 	setup() {
 		console.log("sceneManager setup" );
 		this.scenes = [
-			new physicalBoundScene(),
-			new empathyScene(),
-			new rationalizationScene(),
-			new emotionsScene(),
-			new deathScene(),
+			new physicalBoundaries(),
+			new empathy(),
+			new rationalization(),
+			new emotions(),
+			new death(),
 			new menuScene()
 		]
 		this.curScNum = 0;

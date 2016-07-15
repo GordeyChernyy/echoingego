@@ -1,59 +1,89 @@
 'use strict';
-class physicalBoundScene extends sceneBase {
+class death extends sceneBase {
 	setup() {
 		super.addLayer();
-		this.name = "physicalBoundScene";
+		this.name = "death";
 		this.circles = [];
 		this.velocityData = {};
 		this.runOnce = true;
 		this.minDistance = 20;
+
 		this.isFade = true;
 		this.isFinished = false;
+
+		
 		this.bgGroup = new paper.Group();
 
-		this.titleGroup = new paper.Group();
-		var self = this;
-	    paper.project.importSVG('assets/svg/title/text.svg', function(item) {
-	      self.titleGroup.addChild(item);
-	    	self.titleGroup.position = [700, 280];
-	    });
+		this.lockPos = new paper.Point();
+		this.keyPos = new paper.Point();
+
+		this.keyPosOffset = [-45, -13];
+		this.lockPosOffset = [0, 0];
 
 		this.bg = new paper.Path.Rectangle({
 			from: [0, 0],
 			to: paper.view.size,
-			fillColor: 'darkRed',
-		})
+			fillColor: 'white',
+		});
+		this.titleGroup = new paper.Group();
+		var self = this;
+	    paper.project.importSVG('assets/svg/title/text.svg', function(item) {
+	      	self.titleGroup.addChild(item);
+	    	self.titleGroup.position = [700, 280];
+	    	self.titleGroup.fillColor = 'Gainsboro';
+	    });
 		this.parts = {
 			l_hand: new svgPivotColor({
-				path: 'assets/svg/PhysBounds/rootHand.svg',
+				path: 'assets/svg/Death/rootHandL.svg',
 				pivot: [0, 0],
 				energy: 0,
 				speed: 5,
 				fadeForce: 19,
 			}),
 			r_hand: new svgPivotColor({
-				path: 'assets/svg/PhysBounds/rootHandR.svg',
+				path: 'assets/svg/Death/rootHandR.svg',
 				pivot: [0, 0],
 				energy: 0,
 				speed: 5,
 				fadeForce: 19,
 			}),
+			// r_elbow: new svgPivotColor({
+				// path: 'assets/svg/Death/rootElbowR.svg',
+				// pivot: [0, 0],
+				// energy: 0,
+				// speed: 5,
+				// fadeForce: 19,
+			// }),
+			// l_elbow: new svgPivotColor({
+				// path: 'assets/svg/Death/rootElbowL.svg',
+				// pivot: [0, 0],
+				// energy: 0,
+				// speed: 5,
+				// fadeForce: 19,
+			// }),
 			r_foot: new svgPivotColor({
-				path: 'assets/svg/PhysBounds/rootLegR.svg',
+				path: 'assets/svg/Death/rootLegR.svg',
 				pivot: [0, 0],
 				energy: 20,
 				speed: 5,
 				fadeForce: 19,
 			}),
 			l_foot: new svgPivotColor({
-				path: 'assets/svg/PhysBounds/rootLegL.svg',
+				path: 'assets/svg/Death/rootLegL.svg',
 				pivot: [0, 0],
 				energy: 20,
 				speed: 5,
 				fadeForce: 19,
 			}),
 			head: new svgPivotColor({
-				path: 'assets/svg/PhysBounds/rootHead.svg',
+				path: 'assets/svg/Death/rootHead.svg',
+				pivot: [0, 0],
+				energy: 20,
+				speed: 3,
+				fadeForce: 12,
+			}),
+			torso: new svgPivotColor({
+				path: 'assets/svg/Death/rootBody.svg',
 				pivot: [0, 0],
 				energy: 20,
 				speed: 5,
@@ -62,12 +92,12 @@ class physicalBoundScene extends sceneBase {
 		};
 
 		this.title2 = new paper.PointText({
-		 	content: "physical boundaries",
+		 	content: "anticipation of death",
 			fontFamily: "Helvetica",
 			fontSize: 40,
 			fontWeight: 'bold',
 			justification: "left",
-			fillColor: 'white'
+			fillColor: 'Gainsboro'
 		});
 		this.circle = new paper.Path.Circle({
 			radius: 20,
@@ -86,12 +116,7 @@ class physicalBoundScene extends sceneBase {
 		this.bgGroup.addChild(this.bg);
 		this.opacity = 0;
 
-	}
-	getKeyPos(key){
-		return key.keyObj.localToGlobal().add(key.keyObj.position);
-	}
-	getLockPos(key){
-		return key.lockObj.localToGlobal().add(key.lockObj.position);
+
 	}
 	update(data) {
 		if(this.isFade){
@@ -128,13 +153,20 @@ class physicalBoundScene extends sceneBase {
 		}
 
 		// calculate lock and key pos
-		var lockPos = this.getLockPos(this.parts['l_hand']);
-		var keyPos = this.getKeyPos(this.parts['l_foot']);
-		var distance = keyPos.getDistance(lockPos);
+		this.lockPos.x = data[window.names['l_hand']].x + this.lockPosOffset[0];
+		this.lockPos.y = data[window.names['l_hand']].y + this.lockPosOffset[1]; 
+		this.keyPos.x = data[window.names['head']].x + this.keyPosOffset[0];
+		this.keyPos.y = data[window.names['head']].y + this.keyPosOffset[1];
 
+		var distance = this.keyPos.getDistance(this.lockPos);
+		// this.circle.position = this.lockPos;
+		// this.circle2.position = this.keyPos;
 		// lock solved
 		if(distance < this.minDistance && this.runOnce){
-			window.poemContent = "I've got nothing to claim\nnot even the place where I stay\nbecause if you give a fish\na bowl you take its ocean away";
+			window.poemContent = "Dear monk,\nYou can't protest entropy?\nI'm a fucking law of physics.\nI am become death, the destroyer worlds\nI am closer to you humans than your fingers.";
+
+ 
+
 			this.isFade = true;
 			this.runOnce = false;
 		}

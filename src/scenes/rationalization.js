@@ -1,8 +1,8 @@
 'use strict';
-class rationalizationScene extends sceneBase {
+class rationalization extends sceneBase {
 	setup() {
 		super.addLayer();
-		this.name = "rationalizationScene";
+		this.name = "rationalization";
 		this.circles = [];
 		this.velocityData = {};
 		this.runOnce = true;

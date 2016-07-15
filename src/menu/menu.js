@@ -10,11 +10,11 @@ class Menu {
 		this.isOverP = false;
 		this.clickCounter = 0;
 		this.menuItems = [
-			this.createMenuItem("physicalBoundScene"), 
-			this.createMenuItem("empathyScene"),
-			this.createMenuItem("rationalizationScene"),
-			this.createMenuItem("emotionsScene"),
-			this.createMenuItem("deathScene")
+			this.createMenuItem("physicalBoundaries"), 
+			this.createMenuItem("empathy"),
+			this.createMenuItem("rationalization"),
+			this.createMenuItem("emotions"),
+			this.createMenuItem("death")
 		];
 		for (var i = 0; i < this.menuItems.length; i++) {
 			this.menuItems[i].group.pivot = this.menuItems[i].group.bounds.rightCenter;

@@ -33,7 +33,7 @@ window.echoingEgo.initializeOnFrame = function() {
 // set mouse pointer
 function onMouseMove(event) {
 	pointer.position = event.point;
-	var scene = SM.getScene('deathScene')
+	var scene = SM.getScene('death')
 
 	// scene.keyPosOffset[0] =  paper.view.size.width/2 - event.point.x;
 	// scene.keyPosOffset[1] =  paper.view.size.height/2 - event.point.y;
