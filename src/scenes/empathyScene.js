@@ -104,12 +104,6 @@ class empathyScene extends sceneBase {
 		this.opacity = 0;
 
 	}
-	getKeyPos(key){
-		return key.keyObj.localToGlobal();
-	}
-	getLockPos(key){
-		return key.lockObj.localToGlobal();
-	}
 	update(data) {
 		if(this.isFade){
 			for (var prop in this.parts) {

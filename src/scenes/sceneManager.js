@@ -5,6 +5,9 @@ class sceneManager {
 		this.scenes = [
 			new physicalBoundScene(),
 			new empathyScene(),
+			new rationalizationScene(),
+			new emotionsScene(),
+			new deathScene(),
 			new menuScene()
 		]
 		this.curScNum = 0;

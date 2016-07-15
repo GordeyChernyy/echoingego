@@ -24,17 +24,24 @@ window.echoingEgo.initializeOnFrame = function() {
 		SM.update(window.echoingEgo.data);
 		
 		// set kinect pointer
-		// var hand = window.echoingEgo.data[window.names['l_hand']];
-		// pointer.position = [hand["x"], hand["y"]];
-		// menu.update(pointer);
+		var hand = window.echoingEgo.data[window.names['l_hand']];
+		pointer.position = [hand["x"], hand["y"]];
+		menu.update(pointer);
 	}
 }
 
 // set mouse pointer
 function onMouseMove(event) {
 	pointer.position = event.point;
-	// SM.getScene('empathyScene').keyPosOffset[0] =  paper.view.size.width/2 - event.point.x;
-	// SM.getScene('empathyScene').keyPosOffset[1] =  paper.view.size.height/2 - event.point.y;
-	// console.log(SM.getScene('empathyScene').keyPosOffset);
+	var scene = SM.getScene('deathScene')
+
+	// scene.keyPosOffset[0] =  paper.view.size.width/2 - event.point.x;
+	// scene.keyPosOffset[1] =  paper.view.size.height/2 - event.point.y;
+	// console.log(scene.keyPosOffset);
+
+	// scene.lockPosOffset[0] = paper.view.size.width/2 - event.point.x;
+	// scene.lockPosOffset[1] = paper.view.size.height/2 - event.point.y;
+	// console.log(scene.lockPosOffset);
+
 	menu.update(pointer);
 }

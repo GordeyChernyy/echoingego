@@ -1,8 +1,8 @@
 'use strict';
-class rationalizationScene extends sceneBase {
+class deathScene extends sceneBase {
 	setup() {
 		super.addLayer();
-		this.name = "rationalizationScene";
+		this.name = "deathScene";
 		this.circles = [];
 		this.velocityData = {};
 		this.runOnce = true;
@@ -14,65 +14,53 @@ class rationalizationScene extends sceneBase {
 
 		this.lockPos = new paper.Point();
 		this.keyPos = new paper.Point();
-		this.keyPosOffset = [-80, -3];
-		this.lockPosOffset = [55, 4];
+
+		this.keyPosOffset = [-45, -13];
+		this.lockPosOffset = [0, 0];
+
 		this.bg = new paper.Path.Rectangle({
 			from: [0, 0],
 			to: paper.view.size,
-			fillColor: 'black',
+			fillColor: 'white',
 		})
 		this.parts = {
 			l_hand: new svgPivotColor({
-				path: 'assets/svg/Rationalization/rootHandL.svg',
+				path: 'assets/svg/Death/rootHandL.svg',
 				pivot: [0, 0],
 				energy: 0,
 				speed: 5,
 				fadeForce: 19,
 			}),
-			r_knee: new svgPivotColor({
-				path: 'assets/svg/Rationalization/rootLegR.svg',
+			r_foot: new svgPivotColor({
+				path: 'assets/svg/Death/rootLegR.svg',
 				pivot: [0, 0],
 				energy: 20,
 				speed: 5,
 				fadeForce: 19,
 			}),
-			l_knee: new svgPivotColor({
-				path: 'assets/svg/Rationalization/rootLegL.svg',
+			l_foot: new svgPivotColor({
+				path: 'assets/svg/Death/rootLegL.svg',
 				pivot: [0, 0],
 				energy: 20,
 				speed: 5,
 				fadeForce: 19,
 			}),
 			head: new svgPivotColor({
-				path: 'assets/svg/Rationalization/rootHead.svg',
+				path: 'assets/svg/Death/rootHead.svg',
 				pivot: [0, 0],
 				energy: 20,
 				speed: 5,
 				fadeForce: 19,
 			}),
 			torso: new svgPivotColor({
-				path: 'assets/svg/Rationalization/rootBody.svg',
+				path: 'assets/svg/Death/rootBody.svg',
 				pivot: [0, 0],
 				energy: 20,
 				speed: 5,
 				fadeForce: 19,
 			}),
 			r_hand: new svgPivotColor({
-				path: 'assets/svg/Rationalization/rootHandR.svg',
-				pivot: [0, 0],
-				energy: 0,
-				speed: 5,
-				fadeForce: 19,
-			}),
-			r_elbow: new svgPivotColor({
-				path: 'assets/svg/Rationalization/rootElbowR.svg',
-				pivot: [0, 0],
-				energy: 0,
-				speed: 5,
-				fadeForce: 19,
-			}),
-			l_elbow: new svgPivotColor({
-				path: 'assets/svg/Rationalization/rootElbowL.svg',
+				path: 'assets/svg/Death/rootHandR.svg',
 				pivot: [0, 0],
 				energy: 0,
 				speed: 5,
@@ -157,8 +145,8 @@ class rationalizationScene extends sceneBase {
 		// calculate lock and key pos
 		this.lockPos.x = data[window.names['l_hand']].x + this.lockPosOffset[0];
 		this.lockPos.y = data[window.names['l_hand']].y + this.lockPosOffset[1]; 
-		this.keyPos.x = data[window.names['r_hand']].x + this.keyPosOffset[0];
-		this.keyPos.y = data[window.names['r_hand']].y + this.keyPosOffset[1];
+		this.keyPos.x = data[window.names['head']].x + this.keyPosOffset[0];
+		this.keyPos.y = data[window.names['head']].y + this.keyPosOffset[1];
 
 		var distance = this.keyPos.getDistance(this.lockPos);
 		// this.circle.position = this.lockPos;
