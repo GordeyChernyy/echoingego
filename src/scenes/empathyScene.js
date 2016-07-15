@@ -141,7 +141,7 @@ class empathyScene extends sceneBase {
 		// this.circle2.position = this.keyPos;
 		// lock solved
 		if(distance < this.minDistance && this.runOnce){
-			window.poemContent = "I've got nothing to claim\nnot even the place where I stay\nbecause if you give a fish\na bowl you take its ocean away";
+			window.poemContent = "If you grow like a red wood,\nyou may scrape the sun for a moment,\nbut you are destined to fall\nBut, if you grow like a banyan tree,\nin every leaf in the forest\nyou feel the light through us all";
 			this.isFade = true;
 			this.runOnce = false;
 		}

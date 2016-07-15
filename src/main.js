@@ -24,9 +24,9 @@ window.echoingEgo.initializeOnFrame = function() {
 		SM.update(window.echoingEgo.data);
 		
 		// set kinect pointer
-		var hand = window.echoingEgo.data[window.names['l_hand']];
-		pointer.position = [hand["x"], hand["y"]];
-		menu.update(pointer);
+		// var hand = window.echoingEgo.data[window.names['l_hand']];
+		// pointer.position = [hand["x"], hand["y"]];
+		// menu.update(pointer);
 	}
 }
 

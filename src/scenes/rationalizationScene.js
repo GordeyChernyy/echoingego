@@ -158,7 +158,7 @@ class rationalizationScene extends sceneBase {
 		// this.circle2.position = this.keyPos;
 		// lock solved
 		if(distance < this.minDistance && this.runOnce){
-			window.poemContent = "I've got nothing to claim\nnot even the place where I stay\nbecause if you give a fish\na bowl you take its ocean away";
+			window.poemContent = "Would I'd have been here\nHere, If I'd had been, hear I\nWould id have been here";
 			this.isFade = true;
 			this.runOnce = false;
 		}

@@ -28,6 +28,7 @@ class deathScene extends sceneBase {
 	    paper.project.importSVG('assets/svg/title/text.svg', function(item) {
 	      	self.titleGroup.addChild(item);
 	    	self.titleGroup.position = [700, 280];
+	    	self.titleGroup.fillColor = 'Gainsboro';
 	    });
 		this.parts = {
 			l_hand: new svgPivotColor({
@@ -80,7 +81,7 @@ class deathScene extends sceneBase {
 			fontSize: 40,
 			fontWeight: 'bold',
 			justification: "left",
-			fillColor: 'black'
+			fillColor: 'Gainsboro'
 		});
 		this.circle = new paper.Path.Circle({
 			radius: 20,
@@ -146,7 +147,10 @@ class deathScene extends sceneBase {
 		// this.circle2.position = this.keyPos;
 		// lock solved
 		if(distance < this.minDistance && this.runOnce){
-			window.poemContent = "I've got nothing to claim\nnot even the place where I stay\nbecause if you give a fish\na bowl you take its ocean away";
+			window.poemContent = "Dear monk,\n You can't protest entropy?\nI'm a fucking law of physics.\nI am become death, the destroyer worlds\nI am closer to you humans than your fingers.";
+
+ 
+
 			this.isFade = true;
 			this.runOnce = false;
 		}

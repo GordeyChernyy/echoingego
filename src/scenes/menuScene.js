@@ -10,6 +10,10 @@ class menuScene extends sceneBase {
 			fillColor: 'black',
 		})
 		this.poetry = new paper.PointText({
+			fontFamily: "Helvetica",
+			fontSize: 20,
+			fontWeight: 'regular',
+			justification: "left",
 			content: window.poemContent,
 			position: [paper.view.size.width/2, paper.view.size.height/2],
 			fillColor: 'white'

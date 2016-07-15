@@ -42,6 +42,7 @@ class emotionsScene extends sceneBase {
 				speed: 5,
 				fadeForce: 19,
 			}),
+			head: new svgPivotColor({
 			l_foot: new svgPivotColor({
 				path: 'assets/svg/Emotions/rootLegL.svg',
 				pivot: [0, 0],
@@ -49,7 +50,6 @@ class emotionsScene extends sceneBase {
 				speed: 5,
 				fadeForce: 19,
 			}),
-			head: new svgPivotColor({
 				path: 'assets/svg/Emotions/rootHead.svg',
 				pivot: [0, 0],
 				energy: 20,
@@ -73,12 +73,12 @@ class emotionsScene extends sceneBase {
 		};
 
 		this.title2 = new paper.PointText({
-		 	content: "death",
+		 	content: "emotions",
 			fontFamily: "Helvetica",
 			fontSize: 40,
 			fontWeight: 'bold',
 			justification: "left",
-			fillColor: 'black'
+			fillColor: 'white'
 		});
 		this.circle = new paper.Path.Circle({
 			radius: 20,
@@ -143,7 +143,7 @@ class emotionsScene extends sceneBase {
 		// this.circle2.position = this.keyPos;
 		// lock solved
 		if(distance < this.minDistance && this.runOnce){
-			window.poemContent = "I've got nothing to claim\nnot even the place where I stay\nbecause if you give a fish\na bowl you take its ocean away";
+			window.poemContent = "A guitarrist pulls strings\nGiving life to a piece of wood\nlike a puppeteer\nI wonder did the tree ever predict it could sing so sweetly\nWhen the wood cutter was tearing at its side?";
 			this.isFade = true;
 			this.runOnce = false;
 		}
