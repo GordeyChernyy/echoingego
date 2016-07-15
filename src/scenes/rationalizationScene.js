@@ -26,6 +26,7 @@ class rationalizationScene extends sceneBase {
 	    paper.project.importSVG('assets/svg/title/text.svg', function(item) {
 	      self.titleGroup.addChild(item);
 	    	self.titleGroup.position = [700, 280];
+	    	self.titleGroup.fillColor = 'DarkGrey';
 	    });
 		this.parts = {
 			l_hand: new svgPivotColor({
@@ -92,7 +93,7 @@ class rationalizationScene extends sceneBase {
 			fontSize: 40,
 			fontWeight: 'bold',
 			justification: "left",
-			fillColor: 'white'
+			fillColor: 'DarkGrey'
 		});
 		this.circle = new paper.Path.Circle({
 			radius: 20,

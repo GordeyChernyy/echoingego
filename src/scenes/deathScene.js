@@ -38,6 +38,27 @@ class deathScene extends sceneBase {
 				speed: 5,
 				fadeForce: 19,
 			}),
+			r_hand: new svgPivotColor({
+				path: 'assets/svg/Death/rootHandR.svg',
+				pivot: [0, 0],
+				energy: 0,
+				speed: 5,
+				fadeForce: 19,
+			}),
+			// r_elbow: new svgPivotColor({
+				// path: 'assets/svg/Death/rootElbowR.svg',
+				// pivot: [0, 0],
+				// energy: 0,
+				// speed: 5,
+				// fadeForce: 19,
+			// }),
+			// l_elbow: new svgPivotColor({
+				// path: 'assets/svg/Death/rootElbowL.svg',
+				// pivot: [0, 0],
+				// energy: 0,
+				// speed: 5,
+				// fadeForce: 19,
+			// }),
 			r_foot: new svgPivotColor({
 				path: 'assets/svg/Death/rootLegR.svg',
 				pivot: [0, 0],
@@ -65,18 +86,11 @@ class deathScene extends sceneBase {
 				energy: 20,
 				speed: 5,
 				fadeForce: 19,
-			}),
-			r_hand: new svgPivotColor({
-				path: 'assets/svg/Death/rootHandR.svg',
-				pivot: [0, 0],
-				energy: 0,
-				speed: 5,
-				fadeForce: 19,
 			})
 		};
 
 		this.title2 = new paper.PointText({
-		 	content: "death",
+		 	content: "anticipation of death",
 			fontFamily: "Helvetica",
 			fontSize: 40,
 			fontWeight: 'bold',
