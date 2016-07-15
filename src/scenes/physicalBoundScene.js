@@ -10,6 +10,14 @@ class physicalBoundScene extends sceneBase {
 		this.isFade = true;
 		this.isFinished = false;
 		this.bgGroup = new paper.Group();
+
+		this.titleGroup = new paper.Group();
+		var self = this;
+	    paper.project.importSVG('assets/svg/title/text.svg', function(item) {
+	      self.titleGroup.addChild(item);
+	    	self.titleGroup.position = [700, 280];
+	    });
+
 		this.bg = new paper.Path.Rectangle({
 			from: [0, 0],
 			to: paper.view.size,
@@ -53,16 +61,10 @@ class physicalBoundScene extends sceneBase {
 			})
 		};
 
-		this.title = new paper.PointText({
-		 	content: "Your ego is about ",
-			fontFamily: "Helvetica",
-			fontSize: 40,
-			fillColor: 'white'
-		});
 		this.title2 = new paper.PointText({
 		 	content: "physical boundaries",
-			fontFamily: this.title.fontFamily,
-			fontSize: this.title.fontSize,
+			fontFamily: "Helvetica",
+			fontSize: 40,
 			fontWeight: 'bold',
 			justification: "left",
 			fillColor: 'white'
@@ -75,21 +77,13 @@ class physicalBoundScene extends sceneBase {
 			radius: 20,
 			fillColor: 'green',
 		});
-		var w = this.title.bounds['_width'] +  this.title2.bounds['_width'];
-		var posX = (paper.view.size.width - w)/2;
-		var posY = 40;
 
-		this.title.point = [posX, posY];
-		this.title2.point = [posX+this.title.bounds['_width'], posY];
+		this.title2.point = [330, 600];
 
-		console.log(this.title.bounds); 
-		console.log(this.title.justification); 
 		this.counter = 0;
 		this.velocity = 0;
 		
 		this.bgGroup.addChild(this.bg);
-		this.bgGroup.addChild(this.title);
-		this.bgGroup.addChild(this.title2);
 		this.opacity = 0;
 
 	}

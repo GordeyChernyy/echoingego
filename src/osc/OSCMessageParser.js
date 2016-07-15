@@ -39,8 +39,8 @@ class OSCMessageParser {
 	if(window.isLocal){ // --------------- local data
 		var rootObj = obj[2];
 		var name = rootObj[0];
-		var scale = 1.3;
-		var x = rootObj[1]*scale+100;
+		var scale = 1.9;
+		var x = rootObj[1]*scale+150;
 		var y = rootObj[2]*scale+50;
 
 		if(Object.keys(window.echoingEgo.data).length > 0 && window.echoingEgo.data[name] != null){
@@ -57,7 +57,7 @@ class OSCMessageParser {
 		if(name=="person"){
 			// console.log(obj[1]);
 		}else{
-			var x = obj[1]*0.3+500;
+			var x = obj[1]*0.3+250;
 			var y = -obj[2]*0.3+300;
 			
 			var x2;

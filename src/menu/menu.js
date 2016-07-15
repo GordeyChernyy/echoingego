@@ -18,7 +18,7 @@ class Menu {
 		];
 		for (var i = 0; i < this.menuItems.length; i++) {
 			this.menuItems[i].group.pivot = this.menuItems[i].group.bounds.rightCenter;
-			this.menuItems[i].group.position = {x: 200, y: (100 + (i *this.spaceBetweenMenuItems))}
+			this.menuItems[i].group.position = {x: 300, y: (200 + (i *this.spaceBetweenMenuItems))}
 		}
 	}
 	update(path){
