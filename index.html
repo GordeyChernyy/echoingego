@@ -13,12 +13,14 @@
     <script type="text/javascript" src="src/menu/menu.js"></script>
     <script type="text/paperscript" src="src/main.js" canvas="myCanvas"></script>
     
+    <script src="http://127.0.0.1:8081/socket.io/socket.io.js"></script>
+
     <script type="text/javascript" src="src/scenes/physicalBoundScene.js"></script>
     <script type="text/javascript" src="src/scenes/rationalizationScene.js"></script>
+    <script type="text/javascript" src="src/scenes/empathyScene.js"></script>
     <script type="text/javascript" src="src/scenes/menuScene.js"></script>
     <script type="text/javascript" src="src/scenes/sceneManager.js"></script>
 
-    <script src="http://127.0.0.1:8081/socket.io/socket.io.js"></script>
     
     <script>
     window.echoingEgo = {};
@@ -44,8 +46,8 @@
     window.names = {
         r_hand: "/righthand_pos",
         l_hand: "/lefthand_pos",
-        r_elbow: "/leftelbow_pos",
-        l_elbow: "/rightelbow_pos",
+        r_elbow: "/rightelbow_pos",
+        l_elbow: "/leftelbow_pos",
         r_foot: "/rightfoot_pos",
         l_foot: "/leftfoot_pos",
         r_knee: "/rightknee_pos",

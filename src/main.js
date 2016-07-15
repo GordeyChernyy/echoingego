@@ -2,37 +2,39 @@
 var SM = new sceneManager();
 SM.setup();
 SM.setSceneByName('menuScene');
-var audio = new Audio('assets/audio/master.wav');
-audio.play();
+
+// audio
+// var audio = new Audio('assets/audio/master.wav');
+// audio.play();
 var menu = new Menu(SM);
+
+// menu
 menu.setup();
+
+// invisible pointer for menu
 var layer = new paper.Layer();
 var pointer = new Path.Circle({
-	fillColor: 'red',
-	radius: 20,
+	fillColor: 'white',
+	radius: 10,
 	visible: false,
 });
 
-// launchFullscreen(document.documentElement);
-// function launchFullscreen(element) {
-//     if (element.requestFullscreen) {
-//         element.requestFullscreen();
-//     } else if (element.mozRequestFullScreen) {
-//         element.mozRequestFullScreen();
-//     } else if (element.webkitRequestFullscreen) {
-//         element.webkitRequestFullscreen();
-//     } else if (element.msRequestFullscreen) {
-//         element.msRequestFullscreen();
-//     }
-// }
-
 window.echoingEgo.initializeOnFrame = function() {
-	// paper.view.onFrame = function(event) { 
-	// 	SM.update(window.echoingEgo.data);
-	// }
+	paper.view.onFrame = function(event) { 
+		SM.update(window.echoingEgo.data);
+		
+		// set kinect pointer
+		// var hand = window.echoingEgo.data[window.names['l_hand']];
+		// pointer.position = [hand["x"], hand["y"]];
+		// menu.update(pointer);
+	}
 }
+
+// set mouse pointer
 function onMouseMove(event) {
 	pointer.position = event.point;
-	SM.update(event.point);
+	// SM.getScene('empathyScene').keyPosOffset[0] =  paper.view.size.width/2 - event.point.x;
+	// SM.getScene('empathyScene').keyPosOffset[1] =  paper.view.size.height/2 - event.point.y;
+	// console.log(SM.getScene('empathyScene').keyPosOffset);
 	menu.update(pointer);
 }

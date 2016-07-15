@@ -55,7 +55,7 @@ class OSCMessageParser {
 	}else{ // --------------- julia data
 		var name = obj[0];
 		if(name=="person"){
-			console.log(obj[1]);
+			// console.log(obj[1]);
 		}else{
 			var x = obj[1]*0.3+500;
 			var y = -obj[2]*0.3+300;

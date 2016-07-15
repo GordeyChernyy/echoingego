@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="154.486px" height="185px" viewBox="0 0 154.486 185" style="enable-background:new 0 0 154.486 185;" xml:space="preserve"
+	>
+<g id="rootLegL">
+	
+		<linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="74.5137" y1="13.6631" x2="229" y2="13.6631" gradientTransform="matrix(1 0 0 -1 -74.5137 120)">
+		<stop  offset="0" style="stop-color:#FFFFFF"/>
+		<stop  offset="0.0074" style="stop-color:#F6F6F6"/>
+		<stop  offset="0.0477" style="stop-color:#C8C8C8"/>
+		<stop  offset="0.0931" style="stop-color:#9D9D9D"/>
+		<stop  offset="0.1419" style="stop-color:#777777"/>
+		<stop  offset="0.195" style="stop-color:#575757"/>
+		<stop  offset="0.2537" style="stop-color:#3B3B3B"/>
+		<stop  offset="0.32" style="stop-color:#252525"/>
+		<stop  offset="0.3974" style="stop-color:#141414"/>
+		<stop  offset="0.4931" style="stop-color:#090909"/>
+		<stop  offset="0.6274" style="stop-color:#020202"/>
+		<stop  offset="1" style="stop-color:#000000"/>
+	</linearGradient>
+	<polygon style="fill:url(#SVGID_1_);" points="71.165,27.674 82.563,122.126 0,185 88.631,172.397 89.979,183.566 141.942,182.671 
+		154.486,29.466 	"/>
+	<circle id="dummy_3_" style="fill:#00FF00;" cx="103.958" cy="168.373" r="3.318"/>
+	<g id="Layer_27">
+		
+			<linearGradient id="key_1_" gradientUnits="userSpaceOnUse" x1="123.5137" y1="105" x2="139.5137" y2="105" gradientTransform="matrix(1 0 0 -1 -74.5137 120)">
+			<stop  offset="0" style="stop-color:#302C2D"/>
+			<stop  offset="0.0499" style="stop-color:#252223"/>
+			<stop  offset="0.1573" style="stop-color:#141313"/>
+			<stop  offset="0.2911" style="stop-color:#090808"/>
+			<stop  offset="0.4788" style="stop-color:#020202"/>
+			<stop  offset="1" style="stop-color:#000000"/>
+		</linearGradient>
+		<polygon id="key" style="fill:url(#key_1_);" points="65,7 60,7 60,0 55,0 55,7 49,7 49,23 55,23 55,30 60,30 60,23 65,23 		"/>
+		<circle id="dummy_20_" style="fill:#00FF00;" cx="70.958" cy="28.373" r="3.318"/>
+	</g>
+</g>
+<g id="Layer_1">
+</g>
+</svg>

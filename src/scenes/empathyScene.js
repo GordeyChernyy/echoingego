@@ -1,8 +1,8 @@
 'use strict';
-class physicalBoundScene extends sceneBase {
+class empathyScene extends sceneBase {
 	setup() {
 		super.addLayer();
-		this.name = "physicalBoundScene";
+		this.name = "empathyScene";
 		this.circles = [];
 		this.velocityData = {};
 		this.runOnce = true;
@@ -10,44 +10,55 @@ class physicalBoundScene extends sceneBase {
 		this.isFade = true;
 		this.isFinished = false;
 		this.bgGroup = new paper.Group();
+
+		this.lockPos = new paper.Point();
+		this.keyPos = new paper.Point();
+		this.keyPosOffset = [124, -108];
 		this.bg = new paper.Path.Rectangle({
 			from: [0, 0],
 			to: paper.view.size,
-			fillColor: 'darkRed',
+			fillColor: '#1b1464',
 		})
 		this.parts = {
 			l_hand: new svgPivotColor({
-				path: 'assets/svg/PhysBounds/rootHand.svg',
+				path: 'assets/svg/Empathy/rootHandL.svg',
 				pivot: [0, 0],
 				energy: 0,
 				speed: 5,
 				fadeForce: 19,
 			}),
-			r_hand: new svgPivotColor({
-				path: 'assets/svg/PhysBounds/rootHandR.svg',
-				pivot: [0, 0],
-				energy: 0,
-				speed: 5,
-				fadeForce: 19,
-			}),
-			r_foot: new svgPivotColor({
-				path: 'assets/svg/PhysBounds/rootLegR.svg',
+			r_knee: new svgPivotColor({
+				path: 'assets/svg/Empathy/rootLegR.svg',
 				pivot: [0, 0],
 				energy: 20,
 				speed: 5,
 				fadeForce: 19,
 			}),
-			l_foot: new svgPivotColor({
-				path: 'assets/svg/PhysBounds/rootLegL.svg',
+			l_knee: new svgPivotColor({
+				path: 'assets/svg/Empathy/rootLegL.svg',
 				pivot: [0, 0],
 				energy: 20,
 				speed: 5,
 				fadeForce: 19,
 			}),
 			head: new svgPivotColor({
-				path: 'assets/svg/PhysBounds/rootHead.svg',
+				path: 'assets/svg/Empathy/rootHead.svg',
 				pivot: [0, 0],
 				energy: 20,
+				speed: 5,
+				fadeForce: 19,
+			}),
+			torso: new svgPivotColor({
+				path: 'assets/svg/Empathy/rootBody.svg',
+				pivot: [0, 0],
+				energy: 20,
+				speed: 5,
+				fadeForce: 19,
+			}),
+			r_hand: new svgPivotColor({
+				path: 'assets/svg/Empathy/rootHandR.svg',
+				pivot: [0, 0],
+				energy: 0,
 				speed: 5,
 				fadeForce: 19,
 			})
@@ -94,10 +105,10 @@ class physicalBoundScene extends sceneBase {
 
 	}
 	getKeyPos(key){
-		return key.keyObj.localToGlobal().add(key.keyObj.position);
+		return key.keyObj.localToGlobal();
 	}
 	getLockPos(key){
-		return key.lockObj.localToGlobal().add(key.lockObj.position);
+		return key.lockObj.localToGlobal();
 	}
 	update(data) {
 		if(this.isFade){
@@ -134,10 +145,14 @@ class physicalBoundScene extends sceneBase {
 		}
 
 		// calculate lock and key pos
-		var lockPos = this.getLockPos(this.parts['l_hand']);
-		var keyPos = this.getKeyPos(this.parts['l_foot']);
-		var distance = keyPos.getDistance(lockPos);
+		this.lockPos.x = data[window.names['head']].x;
+		this.lockPos.y = data[window.names['head']].y; 
+		this.keyPos.x = data[window.names['r_hand']].x + this.keyPosOffset[0];
+		this.keyPos.y = data[window.names['r_hand']].y + this.keyPosOffset[1];
 
+		var distance = this.keyPos.getDistance(this.lockPos);
+		// this.circle.position = this.lockPos;
+		// this.circle2.position = this.keyPos;
 		// lock solved
 		if(distance < this.minDistance && this.runOnce){
 			window.poemContent = "I've got nothing to claim\nnot even the place where I stay\nbecause if you give a fish\na bowl you take its ocean away";

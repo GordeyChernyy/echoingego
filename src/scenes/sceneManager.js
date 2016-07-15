@@ -4,7 +4,7 @@ class sceneManager {
 		console.log("sceneManager setup" );
 		this.scenes = [
 			new physicalBoundScene(),
-			new rationalizationScene(),
+			new empathyScene(),
 			new menuScene()
 		]
 		this.curScNum = 0;
@@ -29,6 +29,9 @@ class sceneManager {
 	}
 	getCurSceneName(){
 		return this.names[this.curScNum];
+	}
+	getScene(name){
+		return this.scenes[this.names.indexOf(name)];
 	}
 	setSceneByName(name) {
 		this.hideScene();

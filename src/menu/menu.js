@@ -11,7 +11,7 @@ class Menu {
 		this.clickCounter = 0;
 		this.menuItems = [
 			this.createMenuItem("physicalBoundScene"), 
-			this.createMenuItem("rationalizationScene")
+			this.createMenuItem("empathyScene")
 		];
 		for (var i = 0; i < this.menuItems.length; i++) {
 			this.menuItems[i].group.pivot = this.menuItems[i].group.bounds.rightCenter;

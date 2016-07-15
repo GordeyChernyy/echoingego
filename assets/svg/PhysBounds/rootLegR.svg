@@ -4,7 +4,7 @@
 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 width="154.486px" height="157.326px" viewBox="0 0 154.486 157.326" style="enable-background:new 0 0 154.486 157.326;"
 	 xml:space="preserve">
-<g id="rootLeg">
+<g id="rootLegR">
 	
 		<linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="76.5137" y1="15.3369" x2="231" y2="15.3369" gradientTransform="matrix(-1 0 0 -1 231 94)">
 		<stop  offset="0" style="stop-color:#FFFFFF"/>
@@ -22,7 +22,7 @@
 	</linearGradient>
 	<polygon style="fill:url(#SVGID_1_);" points="0,1.792 12.544,154.997 64.507,155.893 65.855,144.724 154.486,157.326 
 		71.923,94.452 83.321,0 	"/>
-	<circle id="dummy_3_" style="fill:#00FF00;" cx="50.528" cy="140.699" r="3.318"/>
+	<circle id="dummy_2_" style="fill:#00FF00;" cx="50.528" cy="140.699" r="3.318"/>
 </g>
 <g id="Layer_1">
 </g>
