@@ -43,6 +43,11 @@ class emotionsScene extends sceneBase {
 				fadeForce: 19,
 			}),
 			head: new svgPivotColor({
+				path: 'assets/svg/Emotions/rootHead.svg',
+				pivot: [0, 0],
+				energy: 20,
+				speed: 5,
+				fadeForce: 19,
 			l_foot: new svgPivotColor({
 				path: 'assets/svg/Emotions/rootLegL.svg',
 				pivot: [0, 0],

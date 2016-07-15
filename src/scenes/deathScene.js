@@ -147,7 +147,7 @@ class deathScene extends sceneBase {
 		// this.circle2.position = this.keyPos;
 		// lock solved
 		if(distance < this.minDistance && this.runOnce){
-			window.poemContent = "Dear monk,\n You can't protest entropy?\nI'm a fucking law of physics.\nI am become death, the destroyer worlds\nI am closer to you humans than your fingers.";
+			window.poemContent = "Dear monk,\nYou can't protest entropy?\nI'm a fucking law of physics.\nI am become death, the destroyer worlds\nI am closer to you humans than your fingers.";
 
  
 
