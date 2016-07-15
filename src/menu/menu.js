@@ -10,11 +10,11 @@ class Menu {
 		this.isOverP = false;
 		this.clickCounter = 0;
 		this.menuItems = [
-			this.createMenuItem("physicalBoundScene"), 
-			this.createMenuItem("empathyScene"),
-			this.createMenuItem("rationalizationScene"),
-			this.createMenuItem("emotionsScene"),
-			this.createMenuItem("deathScene")
+			this.createMenuItem("physicalBoundScene", "Physical Bounds"), 
+			this.createMenuItem("empathyScene", "Empathy"),
+			this.createMenuItem("rationalizationScene", "Rationalization"),
+			this.createMenuItem("emotionsScene", "Emotions"),
+			this.createMenuItem("deathScene", "Death")
 		];
 		for (var i = 0; i < this.menuItems.length; i++) {
 			this.menuItems[i].group.pivot = this.menuItems[i].group.bounds.rightCenter;
@@ -43,13 +43,13 @@ class Menu {
 			}
 		}
 	}
-	createMenuItem(sceneName, position) {
+	createMenuItem(sceneName, titleName, position) {
 		var background = new paper.Path.Rectangle({
 			size: [10, 10],
 		})
 		var text = new paper.PointText();
 
-		text.content = sceneName;
+		text.content = titleName;
 		text.fillColor = "White";
 		background.bounds.width = text.bounds.width + 25
 		background.bounds.height = text.bounds.height + 25
