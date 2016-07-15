@@ -9,6 +9,7 @@ class deathScene extends sceneBase {
 		this.minDistance = 20;
 		this.isFade = true;
 		this.isFinished = false;
+
 		
 		this.bgGroup = new paper.Group();
 
@@ -77,8 +78,8 @@ class deathScene extends sceneBase {
 				path: 'assets/svg/Death/rootHead.svg',
 				pivot: [0, 0],
 				energy: 20,
-				speed: 5,
-				fadeForce: 19,
+				speed: 3,
+				fadeForce: 12,
 			}),
 			torso: new svgPivotColor({
 				path: 'assets/svg/Death/rootBody.svg',

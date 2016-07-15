@@ -51,8 +51,8 @@ class empathyScene extends sceneBase {
 				path: 'assets/svg/Empathy/rootHead.svg',
 				pivot: [0, 0],
 				energy: 20,
-				speed: 5,
-				fadeForce: 19,
+				speed: 1,
+				fadeForce: 10,
 			}),
 			torso: new svgPivotColor({
 				path: 'assets/svg/Empathy/rootBody.svg',

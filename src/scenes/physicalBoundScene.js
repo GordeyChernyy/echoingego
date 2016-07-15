@@ -134,7 +134,7 @@ class physicalBoundScene extends sceneBase {
 
 		// lock solved
 		if(distance < this.minDistance && this.runOnce){
-			window.poemContent = "I've got nothing to claim fmf;fdk\nnot even the place where I stay\nbecause if you give a fish\na bowl you take its ocean away";
+			window.poemContent = "I've got nothing to claim\nnot even the place where I stay\nbecause if you give a fish\na bowl you take its ocean away";
 			this.isFade = true;
 			this.runOnce = false;
 		}
