@@ -1,68 +1,84 @@
 'use strict';
-class physicalBoundaries extends sceneBase {
+class emotionsScene extends sceneBase {
 	setup() {
 		super.addLayer();
-		this.name = "physicalBoundaries";
+		this.name = "emotionsScene";
 		this.circles = [];
 		this.velocityData = {};
 		this.runOnce = true;
 		this.minDistance = 20;
 		this.isFade = true;
 		this.isFinished = false;
+		
 		this.bgGroup = new paper.Group();
 
-		this.titleGroup = new paper.Group();
+		this.lockPos = new paper.Point();
+		this.keyPos = new paper.Point();
+		this.keyPosOffset = [0, 0];
+		this.lockPosOffset = [0, 0];
+		this.bg = new paper.Path.Rectangle({
+			from: [0, 0],
+			to: paper.view.size,
+			fillColor: 'black',
+		})
+				this.titleGroup = new paper.Group();
 		var self = this;
 	    paper.project.importSVG('assets/svg/title/text.svg', function(item) {
 	      self.titleGroup.addChild(item);
 	    	self.titleGroup.position = [700, 280];
 	    });
-
-		this.bg = new paper.Path.Rectangle({
-			from: [0, 0],
-			to: paper.view.size,
-			fillColor: 'darkRed',
-		})
 		this.parts = {
 			l_hand: new svgPivotColor({
-				path: 'assets/svg/PhysBounds/rootHand.svg',
-				pivot: [0, 0],
-				energy: 0,
-				speed: 5,
-				fadeForce: 19,
-			}),
-			r_hand: new svgPivotColor({
-				path: 'assets/svg/PhysBounds/rootHandR.svg',
+				path: 'assets/svg/Emotions/rootHandL.svg',
 				pivot: [0, 0],
 				energy: 0,
 				speed: 5,
 				fadeForce: 19,
 			}),
 			r_foot: new svgPivotColor({
-				path: 'assets/svg/PhysBounds/rootLegR.svg',
+				path: 'assets/svg/Emotions/rootLegR.svg',
 				pivot: [0, 0],
 				energy: 20,
 				speed: 5,
 				fadeForce: 19,
 			}),
 			l_foot: new svgPivotColor({
-				path: 'assets/svg/PhysBounds/rootLegL.svg',
+				path: 'assets/svg/Emotions/rootLegL.svg',
+				pivot: [0, 0],
+				energy: 20,
+				speed: 2,
+				fadeForce: 11,
+			}),
+			head: new svgPivotColor({
+				path: 'assets/svg/Emotions/rootHead.svg',
+				pivot: [0, 0],
+				energy: 20,
+				speed: 5,
+				fadeForce: 19,
+				path: 'assets/svg/Emotions/rootHead.svg',
+				pivot: [0, 0],
+				energy: 20,
+				speed: 1,
+				fadeForce: 9,
+			}),
+			torso: new svgPivotColor({
+				path: 'assets/svg/Emotions/rootBody.svg',
 				pivot: [0, 0],
 				energy: 20,
 				speed: 5,
 				fadeForce: 19,
 			}),
-			head: new svgPivotColor({
-				path: 'assets/svg/PhysBounds/rootHead.svg',
+			r_hand: new svgPivotColor({
+				path: 'assets/svg/Emotions/rootHandR.svg',
 				pivot: [0, 0],
-				energy: 20,
+				energy: 0,
 				speed: 5,
 				fadeForce: 19,
 			})
 		};
 
 		this.title2 = new paper.PointText({
-		 	content: "physical boundaries",
+		 	content: "emotions",
 			fontFamily: "Helvetica",
 			fontSize: 40,
 			fontWeight: 'bold',
@@ -86,12 +102,6 @@ class physicalBoundaries extends sceneBase {
 		this.bgGroup.addChild(this.bg);
 		this.opacity = 0;
 
-	}
-	getKeyPos(key){
-		return key.keyObj.localToGlobal().add(key.keyObj.position);
-	}
-	getLockPos(key){
-		return key.lockObj.localToGlobal().add(key.lockObj.position);
 	}
 	update(data) {
 		if(this.isFade){
@@ -128,13 +138,17 @@ class physicalBoundaries extends sceneBase {
 		}
 
 		// calculate lock and key pos
-		var lockPos = this.getLockPos(this.parts['l_hand']);
-		var keyPos = this.getKeyPos(this.parts['l_foot']);
-		var distance = keyPos.getDistance(lockPos);
+		this.lockPos.x = data[window.names['l_foot']].x + this.lockPosOffset[0];
+		this.lockPos.y = data[window.names['l_foot']].y + this.lockPosOffset[1]; 
+		this.keyPos.x = data[window.names['r_foot']].x + this.keyPosOffset[0];
+		this.keyPos.y = data[window.names['r_foot']].y + this.keyPosOffset[1];
 
+		var distance = this.keyPos.getDistance(this.lockPos);
+		// this.circle.position = this.lockPos;
+		// this.circle2.position = this.keyPos;
 		// lock solved
 		if(distance < this.minDistance && this.runOnce){
-			window.poemContent = "I've got nothing to claim\nnot even the place where I stay\nbecause if you give a fish\na bowl you take its ocean away";
+			window.poemContent = "A guitarrist pulls strings\nGiving life to a piece of wood\nlike a puppeteer\nI wonder did the tree ever predict it could sing so sweetly\nWhen the wood cutter was tearing at its side?";
 			this.isFade = true;
 			this.runOnce = false;
 		}

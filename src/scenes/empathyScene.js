@@ -1,27 +1,25 @@
 'use strict';
-class emotions extends sceneBase {
+class empathyScene extends sceneBase {
 	setup() {
 		super.addLayer();
-		this.name = "emotions";
+		this.name = "empathyScene";
 		this.circles = [];
 		this.velocityData = {};
 		this.runOnce = true;
 		this.minDistance = 20;
 		this.isFade = true;
 		this.isFinished = false;
-		
 		this.bgGroup = new paper.Group();
 
 		this.lockPos = new paper.Point();
 		this.keyPos = new paper.Point();
-		this.keyPosOffset = [0, 0];
-		this.lockPosOffset = [0, 0];
+		this.keyPosOffset = [124, -108];
 		this.bg = new paper.Path.Rectangle({
 			from: [0, 0],
 			to: paper.view.size,
-			fillColor: 'black',
-		})
-				this.titleGroup = new paper.Group();
+			fillColor: '#1b1464',
+		});
+		this.titleGroup = new paper.Group();
 		var self = this;
 	    paper.project.importSVG('assets/svg/title/text.svg', function(item) {
 	      self.titleGroup.addChild(item);
@@ -29,47 +27,42 @@ class emotions extends sceneBase {
 	    });
 		this.parts = {
 			l_hand: new svgPivotColor({
-				path: 'assets/svg/Emotions/rootHandL.svg',
+				path: 'assets/svg/Empathy/rootHandL.svg',
 				pivot: [0, 0],
 				energy: 0,
 				speed: 5,
 				fadeForce: 19,
 			}),
-			r_foot: new svgPivotColor({
-				path: 'assets/svg/Emotions/rootLegR.svg',
+			r_knee: new svgPivotColor({
+				path: 'assets/svg/Empathy/rootLegR.svg',
 				pivot: [0, 0],
 				energy: 20,
 				speed: 5,
 				fadeForce: 19,
 			}),
-			l_foot: new svgPivotColor({
-				path: 'assets/svg/Emotions/rootLegL.svg',
+			l_knee: new svgPivotColor({
+				path: 'assets/svg/Empathy/rootLegL.svg',
 				pivot: [0, 0],
 				energy: 20,
-				speed: 2,
-				fadeForce: 11,
+				speed: 5,
+				fadeForce: 19,
 			}),
 			head: new svgPivotColor({
-				path: 'assets/svg/Emotions/rootHead.svg',
-				pivot: [0, 0],
-				energy: 20,
-				speed: 5,
-				fadeForce: 19,
-				path: 'assets/svg/Emotions/rootHead.svg',
+				path: 'assets/svg/Empathy/rootHead.svg',
 				pivot: [0, 0],
 				energy: 20,
 				speed: 1,
-				fadeForce: 9,
+				fadeForce: 10,
 			}),
 			torso: new svgPivotColor({
-				path: 'assets/svg/Emotions/rootBody.svg',
+				path: 'assets/svg/Empathy/rootBody.svg',
 				pivot: [0, 0],
 				energy: 20,
 				speed: 5,
 				fadeForce: 19,
 			}),
 			r_hand: new svgPivotColor({
-				path: 'assets/svg/Emotions/rootHandR.svg',
+				path: 'assets/svg/Empathy/rootHandR.svg',
 				pivot: [0, 0],
 				energy: 0,
 				speed: 5,
@@ -78,7 +71,7 @@ class emotions extends sceneBase {
 		};
 
 		this.title2 = new paper.PointText({
-		 	content: "emotions",
+		 	content: "empathy",
 			fontFamily: "Helvetica",
 			fontSize: 40,
 			fontWeight: 'bold',
@@ -138,17 +131,17 @@ class emotions extends sceneBase {
 		}
 
 		// calculate lock and key pos
-		this.lockPos.x = data[window.names['l_foot']].x + this.lockPosOffset[0];
-		this.lockPos.y = data[window.names['l_foot']].y + this.lockPosOffset[1]; 
-		this.keyPos.x = data[window.names['r_foot']].x + this.keyPosOffset[0];
-		this.keyPos.y = data[window.names['r_foot']].y + this.keyPosOffset[1];
+		this.lockPos.x = data[window.names['head']].x;
+		this.lockPos.y = data[window.names['head']].y; 
+		this.keyPos.x = data[window.names['r_hand']].x + this.keyPosOffset[0];
+		this.keyPos.y = data[window.names['r_hand']].y + this.keyPosOffset[1];
 
 		var distance = this.keyPos.getDistance(this.lockPos);
 		// this.circle.position = this.lockPos;
 		// this.circle2.position = this.keyPos;
 		// lock solved
 		if(distance < this.minDistance && this.runOnce){
-			window.poemContent = "A guitarrist pulls strings\nGiving life to a piece of wood\nlike a puppeteer\nI wonder did the tree ever predict it could sing so sweetly\nWhen the wood cutter was tearing at its side?";
+			window.poemContent = "If you grow like a red wood,\nyou may scrape the sun for a moment,\nbut you are destined to fall\nBut, if you grow like a banyan tree,\nin every leaf in the forest\nyou feel the light through us all";
 			this.isFade = true;
 			this.runOnce = false;
 		}

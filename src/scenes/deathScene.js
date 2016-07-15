@@ -1,82 +1,102 @@
 'use strict';
-class empathy extends sceneBase {
+class deathScene extends sceneBase {
 	setup() {
 		super.addLayer();
-		this.name = "empathy";
+		this.name = "deathScene";
 		this.circles = [];
 		this.velocityData = {};
 		this.runOnce = true;
 		this.minDistance = 20;
 		this.isFade = true;
 		this.isFinished = false;
+
+		
 		this.bgGroup = new paper.Group();
 
 		this.lockPos = new paper.Point();
 		this.keyPos = new paper.Point();
-		this.keyPosOffset = [124, -108];
+
+		this.keyPosOffset = [-45, -13];
+		this.lockPosOffset = [0, 0];
+
 		this.bg = new paper.Path.Rectangle({
 			from: [0, 0],
 			to: paper.view.size,
-			fillColor: '#1b1464',
+			fillColor: 'white',
 		});
 		this.titleGroup = new paper.Group();
 		var self = this;
 	    paper.project.importSVG('assets/svg/title/text.svg', function(item) {
-	      self.titleGroup.addChild(item);
+	      	self.titleGroup.addChild(item);
 	    	self.titleGroup.position = [700, 280];
+	    	self.titleGroup.fillColor = 'Gainsboro';
 	    });
 		this.parts = {
 			l_hand: new svgPivotColor({
-				path: 'assets/svg/Empathy/rootHandL.svg',
+				path: 'assets/svg/Death/rootHandL.svg',
 				pivot: [0, 0],
 				energy: 0,
 				speed: 5,
 				fadeForce: 19,
 			}),
-			r_knee: new svgPivotColor({
-				path: 'assets/svg/Empathy/rootLegR.svg',
+			r_hand: new svgPivotColor({
+				path: 'assets/svg/Death/rootHandR.svg',
+				pivot: [0, 0],
+				energy: 0,
+				speed: 5,
+				fadeForce: 19,
+			}),
+			// r_elbow: new svgPivotColor({
+				// path: 'assets/svg/Death/rootElbowR.svg',
+				// pivot: [0, 0],
+				// energy: 0,
+				// speed: 5,
+				// fadeForce: 19,
+			// }),
+			// l_elbow: new svgPivotColor({
+				// path: 'assets/svg/Death/rootElbowL.svg',
+				// pivot: [0, 0],
+				// energy: 0,
+				// speed: 5,
+				// fadeForce: 19,
+			// }),
+			r_foot: new svgPivotColor({
+				path: 'assets/svg/Death/rootLegR.svg',
 				pivot: [0, 0],
 				energy: 20,
 				speed: 5,
 				fadeForce: 19,
 			}),
-			l_knee: new svgPivotColor({
-				path: 'assets/svg/Empathy/rootLegL.svg',
+			l_foot: new svgPivotColor({
+				path: 'assets/svg/Death/rootLegL.svg',
 				pivot: [0, 0],
 				energy: 20,
 				speed: 5,
 				fadeForce: 19,
 			}),
 			head: new svgPivotColor({
-				path: 'assets/svg/Empathy/rootHead.svg',
+				path: 'assets/svg/Death/rootHead.svg',
 				pivot: [0, 0],
 				energy: 20,
-				speed: 1,
-				fadeForce: 10,
+				speed: 3,
+				fadeForce: 12,
 			}),
 			torso: new svgPivotColor({
-				path: 'assets/svg/Empathy/rootBody.svg',
+				path: 'assets/svg/Death/rootBody.svg',
 				pivot: [0, 0],
 				energy: 20,
-				speed: 5,
-				fadeForce: 19,
-			}),
-			r_hand: new svgPivotColor({
-				path: 'assets/svg/Empathy/rootHandR.svg',
-				pivot: [0, 0],
-				energy: 0,
 				speed: 5,
 				fadeForce: 19,
 			})
 		};
 
 		this.title2 = new paper.PointText({
-		 	content: "empathy",
+		 	content: "anticipation of death",
 			fontFamily: "Helvetica",
 			fontSize: 40,
 			fontWeight: 'bold',
 			justification: "left",
-			fillColor: 'white'
+			fillColor: 'Gainsboro'
 		});
 		this.circle = new paper.Path.Circle({
 			radius: 20,
@@ -94,6 +114,7 @@ class empathy extends sceneBase {
 		
 		this.bgGroup.addChild(this.bg);
 		this.opacity = 0;
+
 
 	}
 	update(data) {
@@ -131,17 +152,20 @@ class empathy extends sceneBase {
 		}
 
 		// calculate lock and key pos
-		this.lockPos.x = data[window.names['head']].x;
-		this.lockPos.y = data[window.names['head']].y; 
-		this.keyPos.x = data[window.names['r_hand']].x + this.keyPosOffset[0];
-		this.keyPos.y = data[window.names['r_hand']].y + this.keyPosOffset[1];
+		this.lockPos.x = data[window.names['l_hand']].x + this.lockPosOffset[0];
+		this.lockPos.y = data[window.names['l_hand']].y + this.lockPosOffset[1]; 
+		this.keyPos.x = data[window.names['head']].x + this.keyPosOffset[0];
+		this.keyPos.y = data[window.names['head']].y + this.keyPosOffset[1];
 
 		var distance = this.keyPos.getDistance(this.lockPos);
 		// this.circle.position = this.lockPos;
 		// this.circle2.position = this.keyPos;
 		// lock solved
 		if(distance < this.minDistance && this.runOnce){
-			window.poemContent = "If you grow like a red wood,\nyou may scrape the sun for a moment,\nbut you are destined to fall\nBut, if you grow like a banyan tree,\nin every leaf in the forest\nyou feel the light through us all";
+			window.poemContent = "Dear monk,\nYou can't protest entropy?\nI'm a fucking law of physics.\nI am become death, the destroyer worlds\nI am closer to you humans than your fingers.";
+
+ 
+
 			this.isFade = true;
 			this.runOnce = false;
 		}
